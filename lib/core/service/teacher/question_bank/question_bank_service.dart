@@ -25,7 +25,7 @@ class QuestionBankService {
         "questionBankId": questionBankId,
         "title": title,
         "description": description,
-        "questions":questions?.map((q) => q.toMap()).toList() ?? [],
+        "questions": questions?.map((q) => q.toMap()).toList() ?? [],
         "teacherId":
             teacherId ?? "RA5PL0Na31UYmhdh6WcqkJkpo1k1", // Default if null
         "teacherName": "Ravi",
@@ -135,6 +135,34 @@ class QuestionBankService {
     } catch (e) {
       print('left');
       return const Left(1);
+    }
+  }
+
+  Future createClass() async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+      final String questionBankId = Uuid().v4();
+
+      final questionBank = {
+        "classId": questionBankId,
+        "className": "Class 6",
+        "teachers": ["teacher_1", "teacher_2"],
+        "students": ["student_1", "student_2", "student_3"],
+        "createdAt": Timestamp.now(),
+        "updatedAt": Timestamp.now()
+      };
+
+      await _firestore
+          .collection('classes')
+          .doc(questionBankId)
+          .set(questionBank);
+
+       print('sssss');
+    } catch (e) {
+      print('eerrr ${e.toString()}');
     }
   }
 }

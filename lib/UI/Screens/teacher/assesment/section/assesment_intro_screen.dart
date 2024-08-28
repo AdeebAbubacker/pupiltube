@@ -24,21 +24,21 @@ class AssesmentIntroScreen extends StatelessWidget {
       listener: (context, state) {
         state.maybeMap(
           createdAssesment: (value) {
-  
             // Navigate to home screen or update UI
-            AppRouteService.navigateToassesmentCreation(context);
+            AppRouteService.navigateToAssesmentCreation(context,
+                model: ModelToAssesmentCreation(
+                  assementId: value.assesment.assessmentId.toString(),
+                  title: value.assesment.title.toString(),
+                  description: value.assesment.description.toString(),
+                ));
           },
           error: (value) {
-      
             // Show error message
           },
           noInternet: (value) {
-    
             // Show no internet message
           },
-          loading: (_) {
-    
-          },
+          loading: (_) {},
           orElse: () {},
         );
       },

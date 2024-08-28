@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
 import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
+import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
 
 class QuestionBankPopup extends StatefulWidget {
@@ -61,6 +62,7 @@ class _PopupContentState extends State<PopupContent> {
   PageController _pageController = PageController();
   int _currentPage = 0;
   QuestionBank? _data; // Default data to pass to the next page
+  List<Question> selectedQuestions = [];
 
   void _navigateToNextPage(QuestionBank dataToPass) {
     setState(() {
@@ -85,6 +87,7 @@ class _PopupContentState extends State<PopupContent> {
     });
   }
 
+  List<int> selectedIndices = [];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -226,6 +229,8 @@ class _PopupContentState extends State<PopupContent> {
                       shrinkWrap: true,
                       itemCount: _data?.questions.length,
                       itemBuilder: (context, index) {
+                        bool isSelected = selectedIndices.contains(index);
+
                         return Padding(
                           padding: const EdgeInsets.only(top: 12),
                           child: Container(
@@ -262,7 +267,18 @@ class _PopupContentState extends State<PopupContent> {
                                     ],
                                   ),
                                   Spacer(),
-                                  Checkbox(value: true, onChanged: (_) {})
+                                  Checkbox(
+                                    value: isSelected,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        if (value == true) {
+                                          selectedIndices.add(index);
+                                        } else {
+                                          selectedIndices.remove(index);
+                                        }
+                                      });
+                                    },
+                                  ),
                                 ],
                               ),
                             ),
@@ -272,7 +288,20 @@ class _PopupContentState extends State<PopupContent> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(onPressed: () {}, child: Text("Import"))
+                  ElevatedButton(
+                    onPressed: () {
+                      selectedQuestions = selectedIndices.map((index) {
+                        return _data!.questions[index];
+                      }).toList();
+
+                      BlocProvider.of<AssesmentBloc>(context).add(
+                          AssesmentEvent.importQuestionBank(
+                              assesmentId:
+                                  '2dae8f20-3254-40ab-9624-70779d3b5947',
+                              question: selectedQuestions ?? []));
+                    },
+                    child: Text("Import ALL"),
+                  ),
                 ],
               ),
             ],

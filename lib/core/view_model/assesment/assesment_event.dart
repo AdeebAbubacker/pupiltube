@@ -7,6 +7,10 @@ class AssesmentEvent with _$AssesmentEvent {
     required String title,
   }) = _CreateAssessment;
   const factory AssesmentEvent.fetchAssesment() = _FetchAssesmentEvent;
+  const factory AssesmentEvent.fetchAssesmentById({required String id}) =
+      _FetchAssesmentByIdEvent;
+  const factory AssesmentEvent.fetchAssesmentForMyClassEvent({required String id}) =
+      _FetchAssesmentForMyClassEvent;
   const factory AssesmentEvent.importQuestionBank({
     required String assesmentId,
     required List<Question> question,

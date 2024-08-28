@@ -29,10 +29,9 @@ class AuthService {
 
         if (userDoc.exists) {
           String userRole = userDoc.get('role'); // Assuming 'role' field exists
-     
         } else {}
       }
-   
+
       return Right(userCredential.user);
     } catch (e) {
       return Left(e.toString());
@@ -43,11 +42,11 @@ class AuthService {
     required String name,
     required String email,
     required String password,
+    required String classId, // New parameter to specify the class ID
   }) async {
     try {
       // Sign up with Firebase Auth
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -55,14 +54,53 @@ class AuthService {
       // Get the generated UID
       String uid = userCredential.user?.uid ?? '';
 
+      // Determine role based on the input (assuming role is an integer)
+      int role = 1; // Default role; update based on your logic or input
+
       // Save additional user data in Firestore
-      await FirebaseFirestore.instance.collection('Users').doc(uid).set({
+      await _db.collection('Users').doc(uid).set({
         'name': name,
         'email': email,
-        'role': 1,
+        'role': role,
       });
+
+      // Update the class document based on the role
+      if (role == 2 || role == 3) { // Assuming role 2 is for teachers and 3 is for students
+        // Fetch the current class document
+        DocumentSnapshot classDoc = await _db.collection('classes').doc(classId).get();
+        if (classDoc.exists) {
+          // Get the current lists of teachers or students
+          List<dynamic> teachers = classDoc.get('teachers') ?? [];
+          List<dynamic> students = classDoc.get('students') ?? [];
+
+          // Update the list based on the role
+          if (role == 2) {
+            // Add to teachers array
+            if (!teachers.contains(uid)) {
+              teachers.add(uid);
+            }
+            // Update the class document with the new list of teachers
+            await _db.collection('classes').doc(classId).update({
+              'teachers': teachers,
+            });
+          } else if (role == 3) {
+            // Add to students array
+            if (!students.contains(uid)) {
+              students.add(uid);
+            }
+            // Update the class document with the new list of students
+            await _db.collection('classes').doc(classId).update({
+              'students': students,
+            });
+          }
+        } else {
+          print('Class document does not exist.');
+        }
+      }
+
     } catch (e) {
-  
+      print('Error during sign up: $e');
+      // Handle errors (e.g., logging, user notification)
     }
   }
 }

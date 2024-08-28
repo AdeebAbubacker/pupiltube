@@ -9,6 +9,10 @@ class AssesmentState with _$AssesmentState {
       {required AssessmentModel assesment}) = _CreatedAssesment;
   const factory AssesmentState.fetchAssesment(
       {required List<AssessmentModel> assesment}) = _FetchAssesment;
+  const factory AssesmentState.fetchAssesmentForMyClass(
+      {required List<AssessmentModel> assesment}) = _FetchAssesmentForMyClass;    
+  const factory AssesmentState.fetchAssesmentBtId(
+      {required AssessmentModel assesment}) = _FetchAssesmentBtId;
 
   const factory AssesmentState.error({required String error}) =
       _AssessmentFailure;

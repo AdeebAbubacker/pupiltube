@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/widget/question_bank_popup.dart';
 import 'package:puppil/core/constant/text_style.dart';
+import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
+import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
 import 'package:uuid/uuid.dart';
 
@@ -13,6 +15,9 @@ class AssesmentCreationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ModelToAssesmentCreation modelToAssesmentCreation =
+        ModalRoute.of(context)!.settings.arguments as ModelToAssesmentCreation;
+
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
@@ -77,75 +82,146 @@ class AssesmentCreationScreen extends StatelessWidget {
                     topRight: Radius.circular(40)),
                 color: Colors.white,
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 12),
-                    Center(
-                      child: Container(
-                        height: 4,
-                        width: 60,
-                        color: Colors.black,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 12),
+                      Center(
+                        child: Container(
+                          height: 4,
+                          width: 60,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 12),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Text(
+                          'Create Assesment',
+                          style: TextStyles.rubik14black54A,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                  Flexible(
+                    child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10),
-                          Text(
-                            'Create Assesment',
-                            style: TextStyles.rubik14black54A,
-                          ),
-                          SizedBox(height: 10),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                _showQuestionBottomSheet(context);
-                              },
-                              child: Text("Add Question"),
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
-                                    BlocProvider.of<QuestionBankBloc>(context)
-                                        .add(QuestionBankEvent
-                                            .fetchAllQuestionBank());
-                                    return Dialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Container(
-                                        padding: EdgeInsets.all(16),
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                        height: 500,
-                                        child: PopupContent(),
-                                      ),
+                          SizedBox(height: 12),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      _showQuestionBottomSheet(context);
+                                    },
+                                    child: Text("Add Question"),
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+
+                                // Expanded(
+                                //   child: ListView.builder(
+                                //     shrinkWrap: true,
+                                //     itemCount: 12,
+                                //     itemBuilder: (context, index) {
+                                //       return Text('data ');
+                                //     },
+                                //   ),
+                                // ),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      BlocProvider.of<AssesmentBloc>(context)
+                                          .add(
+                                              AssesmentEvent.fetchAssesmentById(
+                                                  id: modelToAssesmentCreation
+                                                      .assementId));
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          BlocProvider.of<QuestionBankBloc>(
+                                                  context)
+                                              .add(QuestionBankEvent
+                                                  .fetchAllQuestionBank());
+                                          return Dialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Container(
+                                              padding: EdgeInsets.all(16),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              height: 500,
+                                              child: PopupContent(),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Text("Import From Question Bank"),
+                                  ),
+                                ),
+                                Text('${modelToAssesmentCreation.assementId}'),
+                                Text('${modelToAssesmentCreation.title}'),
+                                Text('${modelToAssesmentCreation.description}'),
+                                BlocBuilder<AssesmentBloc, AssesmentState>(
+                                  builder: (context, state) {
+                                    return state.maybeMap(
+                                      fetchAssesmentBtId: (value) {
+                                        return ListView.builder(
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              value.assesment.questions?.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return Text(
+                                                'data ${value.assesment.teacherId}');
+                                          },
+                                        );
+                                      },
+                                      loading: (value) {
+                                        return Text("Loading");
+                                      },
+                                      orElse: () {
+                                        return Text('data');
+                                      },
                                     );
+                                    // return ListView.builder(
+                                    //   physics: NeverScrollableScrollPhysics(),
+                                    //   itemCount: 20,
+                                    //   shrinkWrap: true,
+                                    //   itemBuilder: (context, index) {
+                                    //     return Text('data');
+                                    //   },
+                                    // );
                                   },
-                                );
-                              },
-                              child: Text("Import From Question Bank"),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
