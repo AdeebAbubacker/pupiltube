@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           // var accessToken = await SetSharedPreferences.storeAccessToken(
           //         success.misc.accessToken) ??
           //     'Access Token empty';
-          emit(LoginState.loginSuccess(user: success!));
+          emit(LoginState.loginSuccess(role: success!));
         });
       } catch (e) {
         emit(LoginState.loginFailure(error: 'An error occurred: $e'));

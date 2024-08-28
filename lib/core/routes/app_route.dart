@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:puppil/UI/Screens/auth/intro_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_creation_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_doyouknow_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_intro_screen.dart';
+import 'package:puppil/core/models/assesment/assesment_model.dart';
 
 class AppRouteService {
   static void navigateToquestionBankIntro(BuildContext context) {
@@ -20,8 +23,60 @@ class AppRouteService {
     Navigator.of(context).push(_assesmentDoYouKnow());
   }
 
-  static void navigateToAssesmentCreation(BuildContext context, {required ModelToAssesmentCreation model}) {
+  static void navigateToAssesmentCreation(BuildContext context,
+      {required ModelToAssesmentCreation model}) {
     Navigator.of(context).pushNamed('/assesmentCreation', arguments: model);
+  }
+
+  static void navigateTotest2(BuildContext context,
+      {required AssessmentModel assementmodel}) {
+    Navigator.of(context).pushNamed('/test2', arguments: assementmodel);
+  }
+
+  static void navigateToIntroScreen(BuildContext context) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => IntroScreen()),
+    );
+  }
+
+  static void navigateSignupRoleScreen(
+    BuildContext context,
+  ) {
+    Navigator.of(context).pushNamed(
+      '/signupRoleScreen',
+    );
+  }
+
+  static void navigateSigninRoleScreen(
+    BuildContext context,
+  ) {
+    Navigator.of(context).pushNamed(
+      '/signinRoleScreen',
+    );
+  }
+
+  static void navigateSigninScreen(BuildContext context,
+      {required int roleId}) {
+    Navigator.of(context).pushNamed(
+      '/signinScreen',
+      arguments: roleId,
+    );
+  }
+
+  static void navigateSignupScreen(BuildContext context,
+      {required int roleId}) {
+    Navigator.of(context).pushNamed(
+      '/signupScreen',
+      arguments: roleId,
+    );
+  }
+
+   static void navigateToStudentDashboard(BuildContext context) {
+    Navigator.of(context).pushNamed('/studentDashboard');
+  }
+
+   static void navigateToTeacherDashboard(BuildContext context) {
+    Navigator.of(context).pushNamed('/teacherDashboard');
   }
 
   static Route _assesmentDoYouKnow() {

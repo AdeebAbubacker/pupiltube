@@ -328,7 +328,7 @@ mixin _$LoginState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loginSuccess,
+    required TResult Function(int role) loginSuccess,
     required TResult Function(String error) loginFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -336,7 +336,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loginSuccess,
+    TResult? Function(int role)? loginSuccess,
     TResult? Function(String error)? loginFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -344,7 +344,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loginSuccess,
+    TResult Function(int role)? loginSuccess,
     TResult Function(String error)? loginFailure,
     required TResult orElse(),
   }) =>
@@ -434,7 +434,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loginSuccess,
+    required TResult Function(int role) loginSuccess,
     required TResult Function(String error) loginFailure,
   }) {
     return initial();
@@ -445,7 +445,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loginSuccess,
+    TResult? Function(int role)? loginSuccess,
     TResult? Function(String error)? loginFailure,
   }) {
     return initial?.call();
@@ -456,7 +456,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loginSuccess,
+    TResult Function(int role)? loginSuccess,
     TResult Function(String error)? loginFailure,
     required TResult orElse(),
   }) {
@@ -548,7 +548,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loginSuccess,
+    required TResult Function(int role) loginSuccess,
     required TResult Function(String error) loginFailure,
   }) {
     return loading();
@@ -559,7 +559,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loginSuccess,
+    TResult? Function(int role)? loginSuccess,
     TResult? Function(String error)? loginFailure,
   }) {
     return loading?.call();
@@ -570,7 +570,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loginSuccess,
+    TResult Function(int role)? loginSuccess,
     TResult Function(String error)? loginFailure,
     required TResult orElse(),
   }) {
@@ -628,7 +628,7 @@ abstract class _$$LoginSuccessImplCopyWith<$Res> {
           _$LoginSuccessImpl value, $Res Function(_$LoginSuccessImpl) then) =
       __$$LoginSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({int role});
 }
 
 /// @nodoc
@@ -642,13 +642,13 @@ class __$$LoginSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? role = null,
   }) {
     return _then(_$LoginSuccessImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -656,14 +656,14 @@ class __$$LoginSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginSuccessImpl implements _LoginSuccess {
-  const _$LoginSuccessImpl({required this.user});
+  const _$LoginSuccessImpl({required this.role});
 
   @override
-  final User user;
+  final int role;
 
   @override
   String toString() {
-    return 'LoginState.loginSuccess(user: $user)';
+    return 'LoginState.loginSuccess(role: $role)';
   }
 
   @override
@@ -671,11 +671,11 @@ class _$LoginSuccessImpl implements _LoginSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginSuccessImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.role, role) || other.role == role));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, role);
 
   @JsonKey(ignore: true)
   @override
@@ -688,10 +688,10 @@ class _$LoginSuccessImpl implements _LoginSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loginSuccess,
+    required TResult Function(int role) loginSuccess,
     required TResult Function(String error) loginFailure,
   }) {
-    return loginSuccess(user);
+    return loginSuccess(role);
   }
 
   @override
@@ -699,10 +699,10 @@ class _$LoginSuccessImpl implements _LoginSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loginSuccess,
+    TResult? Function(int role)? loginSuccess,
     TResult? Function(String error)? loginFailure,
   }) {
-    return loginSuccess?.call(user);
+    return loginSuccess?.call(role);
   }
 
   @override
@@ -710,12 +710,12 @@ class _$LoginSuccessImpl implements _LoginSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loginSuccess,
+    TResult Function(int role)? loginSuccess,
     TResult Function(String error)? loginFailure,
     required TResult orElse(),
   }) {
     if (loginSuccess != null) {
-      return loginSuccess(user);
+      return loginSuccess(role);
     }
     return orElse();
   }
@@ -759,9 +759,9 @@ class _$LoginSuccessImpl implements _LoginSuccess {
 }
 
 abstract class _LoginSuccess implements LoginState {
-  const factory _LoginSuccess({required final User user}) = _$LoginSuccessImpl;
+  const factory _LoginSuccess({required final int role}) = _$LoginSuccessImpl;
 
-  User get user;
+  int get role;
   @JsonKey(ignore: true)
   _$$LoginSuccessImplCopyWith<_$LoginSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -833,7 +833,7 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loginSuccess,
+    required TResult Function(int role) loginSuccess,
     required TResult Function(String error) loginFailure,
   }) {
     return loginFailure(error);
@@ -844,7 +844,7 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loginSuccess,
+    TResult? Function(int role)? loginSuccess,
     TResult? Function(String error)? loginFailure,
   }) {
     return loginFailure?.call(error);
@@ -855,7 +855,7 @@ class _$LoginFailureImpl implements LoginFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loginSuccess,
+    TResult Function(int role)? loginSuccess,
     TResult Function(String error)? loginFailure,
     required TResult orElse(),
   }) {
