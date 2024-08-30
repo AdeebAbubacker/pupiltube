@@ -23,6 +23,8 @@ mixin _$AssesmentEvent {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) =>
@@ -34,6 +36,8 @@ mixin _$AssesmentEvent {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) =>
@@ -45,6 +49,8 @@ mixin _$AssesmentEvent {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -59,6 +65,9 @@ mixin _$AssesmentEvent {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) =>
@@ -71,6 +80,8 @@ mixin _$AssesmentEvent {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +93,8 @@ mixin _$AssesmentEvent {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) =>
@@ -149,6 +162,8 @@ class _$StartedImpl implements _Started {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -163,6 +178,8 @@ class _$StartedImpl implements _Started {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -177,6 +194,8 @@ class _$StartedImpl implements _Started {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -197,6 +216,9 @@ class _$StartedImpl implements _Started {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -212,6 +234,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return started?.call(this);
@@ -226,6 +250,8 @@ class _$StartedImpl implements _Started {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -310,6 +336,8 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -324,6 +352,8 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -338,6 +368,8 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -358,6 +390,9 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -373,6 +408,8 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return createAssessment?.call(this);
@@ -387,6 +424,8 @@ class _$CreateAssessmentImpl implements _CreateAssessment {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -451,6 +490,8 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -465,6 +506,8 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -479,6 +522,8 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -499,6 +544,9 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -514,6 +562,8 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return fetchAssesment?.call(this);
@@ -528,6 +578,8 @@ class _$FetchAssesmentEventImpl implements _FetchAssesmentEvent {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -614,6 +666,8 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -628,6 +682,8 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -642,6 +698,8 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -662,6 +720,9 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -677,6 +738,8 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return fetchAssesmentById?.call(this);
@@ -691,6 +754,8 @@ class _$FetchAssesmentByIdEventImpl implements _FetchAssesmentByIdEvent {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -786,6 +851,8 @@ class _$FetchAssesmentForMyClassEventImpl
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -800,6 +867,8 @@ class _$FetchAssesmentForMyClassEventImpl
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -814,6 +883,8 @@ class _$FetchAssesmentForMyClassEventImpl
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -834,6 +905,9 @@ class _$FetchAssesmentForMyClassEventImpl
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -849,6 +923,8 @@ class _$FetchAssesmentForMyClassEventImpl
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return fetchAssesmentForMyClassEvent?.call(this);
@@ -863,6 +939,8 @@ class _$FetchAssesmentForMyClassEventImpl
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -881,6 +959,367 @@ abstract class _FetchAssesmentForMyClassEvent implements AssesmentEvent {
   @JsonKey(ignore: true)
   _$$FetchAssesmentForMyClassEventImplCopyWith<
           _$FetchAssesmentForMyClassEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAssesmentToDoImplCopyWith<$Res> {
+  factory _$$FetchAssesmentToDoImplCopyWith(_$FetchAssesmentToDoImpl value,
+          $Res Function(_$FetchAssesmentToDoImpl) then) =
+      __$$FetchAssesmentToDoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$FetchAssesmentToDoImplCopyWithImpl<$Res>
+    extends _$AssesmentEventCopyWithImpl<$Res, _$FetchAssesmentToDoImpl>
+    implements _$$FetchAssesmentToDoImplCopyWith<$Res> {
+  __$$FetchAssesmentToDoImplCopyWithImpl(_$FetchAssesmentToDoImpl _value,
+      $Res Function(_$FetchAssesmentToDoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$FetchAssesmentToDoImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAssesmentToDoImpl implements _FetchAssesmentToDo {
+  const _$FetchAssesmentToDoImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'AssesmentEvent.fetchAssesmentToDo(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAssesmentToDoImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAssesmentToDoImplCopyWith<_$FetchAssesmentToDoImpl> get copyWith =>
+      __$$FetchAssesmentToDoImplCopyWithImpl<_$FetchAssesmentToDoImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String title) createAssessment,
+    required TResult Function() fetchAssesment,
+    required TResult Function(String id) fetchAssesmentById,
+    required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
+    required TResult Function(String assesmentId, List<Question> question)
+        importQuestionBank,
+  }) {
+    return fetchAssesmentToDo(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String title)? createAssessment,
+    TResult? Function()? fetchAssesment,
+    TResult? Function(String id)? fetchAssesmentById,
+    TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
+    TResult? Function(String assesmentId, List<Question> question)?
+        importQuestionBank,
+  }) {
+    return fetchAssesmentToDo?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String title)? createAssessment,
+    TResult Function()? fetchAssesment,
+    TResult Function(String id)? fetchAssesmentById,
+    TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
+    TResult Function(String assesmentId, List<Question> question)?
+        importQuestionBank,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentToDo != null) {
+      return fetchAssesmentToDo(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateAssessment value) createAssessment,
+    required TResult Function(_FetchAssesmentEvent value) fetchAssesment,
+    required TResult Function(_FetchAssesmentByIdEvent value)
+        fetchAssesmentById,
+    required TResult Function(_FetchAssesmentForMyClassEvent value)
+        fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
+    required TResult Function(_ImportQuestionBankEvent value)
+        importQuestionBank,
+  }) {
+    return fetchAssesmentToDo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateAssessment value)? createAssessment,
+    TResult? Function(_FetchAssesmentEvent value)? fetchAssesment,
+    TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
+    TResult? Function(_FetchAssesmentForMyClassEvent value)?
+        fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
+    TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
+  }) {
+    return fetchAssesmentToDo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateAssessment value)? createAssessment,
+    TResult Function(_FetchAssesmentEvent value)? fetchAssesment,
+    TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
+    TResult Function(_FetchAssesmentForMyClassEvent value)?
+        fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
+    TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentToDo != null) {
+      return fetchAssesmentToDo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAssesmentToDo implements AssesmentEvent {
+  const factory _FetchAssesmentToDo({required final String id}) =
+      _$FetchAssesmentToDoImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$FetchAssesmentToDoImplCopyWith<_$FetchAssesmentToDoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAssesmentOverDueImplCopyWith<$Res> {
+  factory _$$FetchAssesmentOverDueImplCopyWith(
+          _$FetchAssesmentOverDueImpl value,
+          $Res Function(_$FetchAssesmentOverDueImpl) then) =
+      __$$FetchAssesmentOverDueImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$FetchAssesmentOverDueImplCopyWithImpl<$Res>
+    extends _$AssesmentEventCopyWithImpl<$Res, _$FetchAssesmentOverDueImpl>
+    implements _$$FetchAssesmentOverDueImplCopyWith<$Res> {
+  __$$FetchAssesmentOverDueImplCopyWithImpl(_$FetchAssesmentOverDueImpl _value,
+      $Res Function(_$FetchAssesmentOverDueImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$FetchAssesmentOverDueImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAssesmentOverDueImpl implements _FetchAssesmentOverDue {
+  const _$FetchAssesmentOverDueImpl({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'AssesmentEvent.fetchAssesmentOverDue(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAssesmentOverDueImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAssesmentOverDueImplCopyWith<_$FetchAssesmentOverDueImpl>
+      get copyWith => __$$FetchAssesmentOverDueImplCopyWithImpl<
+          _$FetchAssesmentOverDueImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String title) createAssessment,
+    required TResult Function() fetchAssesment,
+    required TResult Function(String id) fetchAssesmentById,
+    required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
+    required TResult Function(String assesmentId, List<Question> question)
+        importQuestionBank,
+  }) {
+    return fetchAssesmentOverDue(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String title)? createAssessment,
+    TResult? Function()? fetchAssesment,
+    TResult? Function(String id)? fetchAssesmentById,
+    TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
+    TResult? Function(String assesmentId, List<Question> question)?
+        importQuestionBank,
+  }) {
+    return fetchAssesmentOverDue?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String title)? createAssessment,
+    TResult Function()? fetchAssesment,
+    TResult Function(String id)? fetchAssesmentById,
+    TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
+    TResult Function(String assesmentId, List<Question> question)?
+        importQuestionBank,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentOverDue != null) {
+      return fetchAssesmentOverDue(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateAssessment value) createAssessment,
+    required TResult Function(_FetchAssesmentEvent value) fetchAssesment,
+    required TResult Function(_FetchAssesmentByIdEvent value)
+        fetchAssesmentById,
+    required TResult Function(_FetchAssesmentForMyClassEvent value)
+        fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
+    required TResult Function(_ImportQuestionBankEvent value)
+        importQuestionBank,
+  }) {
+    return fetchAssesmentOverDue(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateAssessment value)? createAssessment,
+    TResult? Function(_FetchAssesmentEvent value)? fetchAssesment,
+    TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
+    TResult? Function(_FetchAssesmentForMyClassEvent value)?
+        fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
+    TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
+  }) {
+    return fetchAssesmentOverDue?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateAssessment value)? createAssessment,
+    TResult Function(_FetchAssesmentEvent value)? fetchAssesment,
+    TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
+    TResult Function(_FetchAssesmentForMyClassEvent value)?
+        fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
+    TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentOverDue != null) {
+      return fetchAssesmentOverDue(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAssesmentOverDue implements AssesmentEvent {
+  const factory _FetchAssesmentOverDue({required final String id}) =
+      _$FetchAssesmentOverDueImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$FetchAssesmentOverDueImplCopyWith<_$FetchAssesmentOverDueImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -973,6 +1412,8 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
     required TResult Function() fetchAssesment,
     required TResult Function(String id) fetchAssesmentById,
     required TResult Function(String id) fetchAssesmentForMyClassEvent,
+    required TResult Function(String id) fetchAssesmentToDo,
+    required TResult Function(String id) fetchAssesmentOverDue,
     required TResult Function(String assesmentId, List<Question> question)
         importQuestionBank,
   }) {
@@ -987,6 +1428,8 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
     TResult? Function()? fetchAssesment,
     TResult? Function(String id)? fetchAssesmentById,
     TResult? Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult? Function(String id)? fetchAssesmentToDo,
+    TResult? Function(String id)? fetchAssesmentOverDue,
     TResult? Function(String assesmentId, List<Question> question)?
         importQuestionBank,
   }) {
@@ -1001,6 +1444,8 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
     TResult Function()? fetchAssesment,
     TResult Function(String id)? fetchAssesmentById,
     TResult Function(String id)? fetchAssesmentForMyClassEvent,
+    TResult Function(String id)? fetchAssesmentToDo,
+    TResult Function(String id)? fetchAssesmentOverDue,
     TResult Function(String assesmentId, List<Question> question)?
         importQuestionBank,
     required TResult orElse(),
@@ -1021,6 +1466,9 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
         fetchAssesmentById,
     required TResult Function(_FetchAssesmentForMyClassEvent value)
         fetchAssesmentForMyClassEvent,
+    required TResult Function(_FetchAssesmentToDo value) fetchAssesmentToDo,
+    required TResult Function(_FetchAssesmentOverDue value)
+        fetchAssesmentOverDue,
     required TResult Function(_ImportQuestionBankEvent value)
         importQuestionBank,
   }) {
@@ -1036,6 +1484,8 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
     TResult? Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult? Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult? Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult? Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult? Function(_ImportQuestionBankEvent value)? importQuestionBank,
   }) {
     return importQuestionBank?.call(this);
@@ -1050,6 +1500,8 @@ class _$ImportQuestionBankEventImpl implements _ImportQuestionBankEvent {
     TResult Function(_FetchAssesmentByIdEvent value)? fetchAssesmentById,
     TResult Function(_FetchAssesmentForMyClassEvent value)?
         fetchAssesmentForMyClassEvent,
+    TResult Function(_FetchAssesmentToDo value)? fetchAssesmentToDo,
+    TResult Function(_FetchAssesmentOverDue value)? fetchAssesmentOverDue,
     TResult Function(_ImportQuestionBankEvent value)? importQuestionBank,
     required TResult orElse(),
   }) {
@@ -1083,6 +1535,10 @@ mixin _$AssesmentState {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1097,6 +1553,8 @@ mixin _$AssesmentState {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1110,6 +1568,8 @@ mixin _$AssesmentState {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1125,6 +1585,9 @@ mixin _$AssesmentState {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1140,6 +1603,8 @@ mixin _$AssesmentState {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1154,6 +1619,8 @@ mixin _$AssesmentState {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -1226,6 +1693,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1243,6 +1714,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1259,6 +1732,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1280,6 +1755,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1298,6 +1776,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1315,6 +1795,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -1377,6 +1859,10 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1394,6 +1880,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1410,6 +1898,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1431,6 +1921,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1449,6 +1942,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1466,6 +1961,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -1528,6 +2025,10 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1545,6 +2046,8 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1561,6 +2064,8 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1582,6 +2087,9 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1600,6 +2108,8 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1617,6 +2127,8 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -1707,6 +2219,10 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1724,6 +2240,8 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1740,6 +2258,8 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1761,6 +2281,9 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1779,6 +2302,8 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1796,6 +2321,8 @@ class _$CreatedAssesmentImpl implements _CreatedAssesment {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -1899,6 +2426,10 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -1916,6 +2447,8 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -1932,6 +2465,8 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -1953,6 +2488,9 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -1971,6 +2509,8 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -1988,6 +2528,8 @@ class _$FetchAssesmentImpl implements _FetchAssesment {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -2094,6 +2636,10 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -2111,6 +2657,8 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -2127,6 +2675,8 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -2148,6 +2698,9 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -2166,6 +2719,8 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -2183,6 +2738,8 @@ class _$FetchAssesmentForMyClassImpl implements _FetchAssesmentForMyClass {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -2204,6 +2761,425 @@ abstract class _FetchAssesmentForMyClass implements AssesmentState {
   List<AssessmentModel> get assesment;
   @JsonKey(ignore: true)
   _$$FetchAssesmentForMyClassImplCopyWith<_$FetchAssesmentForMyClassImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAssesmentTodoImplCopyWith<$Res> {
+  factory _$$FetchAssesmentTodoImplCopyWith(_$FetchAssesmentTodoImpl value,
+          $Res Function(_$FetchAssesmentTodoImpl) then) =
+      __$$FetchAssesmentTodoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AssessmentModel> assesment});
+}
+
+/// @nodoc
+class __$$FetchAssesmentTodoImplCopyWithImpl<$Res>
+    extends _$AssesmentStateCopyWithImpl<$Res, _$FetchAssesmentTodoImpl>
+    implements _$$FetchAssesmentTodoImplCopyWith<$Res> {
+  __$$FetchAssesmentTodoImplCopyWithImpl(_$FetchAssesmentTodoImpl _value,
+      $Res Function(_$FetchAssesmentTodoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assesment = null,
+  }) {
+    return _then(_$FetchAssesmentTodoImpl(
+      assesment: null == assesment
+          ? _value._assesment
+          : assesment // ignore: cast_nullable_to_non_nullable
+              as List<AssessmentModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAssesmentTodoImpl implements _FetchAssesmentTodo {
+  const _$FetchAssesmentTodoImpl(
+      {required final List<AssessmentModel> assesment})
+      : _assesment = assesment;
+
+  final List<AssessmentModel> _assesment;
+  @override
+  List<AssessmentModel> get assesment {
+    if (_assesment is EqualUnmodifiableListView) return _assesment;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assesment);
+  }
+
+  @override
+  String toString() {
+    return 'AssesmentState.fetchAssesmentTodo(assesment: $assesment)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAssesmentTodoImpl &&
+            const DeepCollectionEquality()
+                .equals(other._assesment, _assesment));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_assesment));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAssesmentTodoImplCopyWith<_$FetchAssesmentTodoImpl> get copyWith =>
+      __$$FetchAssesmentTodoImplCopyWithImpl<_$FetchAssesmentTodoImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() noInternet,
+    required TResult Function(AssessmentModel assesment) createdAssesment,
+    required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
+    required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
+    required TResult Function(String error) error,
+    required TResult Function(int success) importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentTodo(assesment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? noInternet,
+    TResult? Function(AssessmentModel assesment)? createdAssesment,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
+    TResult? Function(List<AssessmentModel> assesment)?
+        fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
+    TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
+    TResult? Function(String error)? error,
+    TResult? Function(int success)? importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentTodo?.call(assesment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? noInternet,
+    TResult Function(AssessmentModel assesment)? createdAssesment,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
+    TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
+    TResult Function(String error)? error,
+    TResult Function(int success)? importQuestionBankSuccess,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentTodo != null) {
+      return fetchAssesmentTodo(assesment);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_CreatedAssesment value) createdAssesment,
+    required TResult Function(_FetchAssesment value) fetchAssesment,
+    required TResult Function(_FetchAssesmentForMyClass value)
+        fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
+    required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
+    required TResult Function(_AssessmentFailure value) error,
+    required TResult Function(_ImportQuestionBankSuccess value)
+        importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentTodo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_CreatedAssesment value)? createdAssesment,
+    TResult? Function(_FetchAssesment value)? fetchAssesment,
+    TResult? Function(_FetchAssesmentForMyClass value)?
+        fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
+    TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
+    TResult? Function(_AssessmentFailure value)? error,
+    TResult? Function(_ImportQuestionBankSuccess value)?
+        importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentTodo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_CreatedAssesment value)? createdAssesment,
+    TResult Function(_FetchAssesment value)? fetchAssesment,
+    TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
+    TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
+    TResult Function(_AssessmentFailure value)? error,
+    TResult Function(_ImportQuestionBankSuccess value)?
+        importQuestionBankSuccess,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentTodo != null) {
+      return fetchAssesmentTodo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAssesmentTodo implements AssesmentState {
+  const factory _FetchAssesmentTodo(
+          {required final List<AssessmentModel> assesment}) =
+      _$FetchAssesmentTodoImpl;
+
+  List<AssessmentModel> get assesment;
+  @JsonKey(ignore: true)
+  _$$FetchAssesmentTodoImplCopyWith<_$FetchAssesmentTodoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAssesmentOverdueImplCopyWith<$Res> {
+  factory _$$FetchAssesmentOverdueImplCopyWith(
+          _$FetchAssesmentOverdueImpl value,
+          $Res Function(_$FetchAssesmentOverdueImpl) then) =
+      __$$FetchAssesmentOverdueImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AssessmentModel> assesment});
+}
+
+/// @nodoc
+class __$$FetchAssesmentOverdueImplCopyWithImpl<$Res>
+    extends _$AssesmentStateCopyWithImpl<$Res, _$FetchAssesmentOverdueImpl>
+    implements _$$FetchAssesmentOverdueImplCopyWith<$Res> {
+  __$$FetchAssesmentOverdueImplCopyWithImpl(_$FetchAssesmentOverdueImpl _value,
+      $Res Function(_$FetchAssesmentOverdueImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assesment = null,
+  }) {
+    return _then(_$FetchAssesmentOverdueImpl(
+      assesment: null == assesment
+          ? _value._assesment
+          : assesment // ignore: cast_nullable_to_non_nullable
+              as List<AssessmentModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAssesmentOverdueImpl implements _FetchAssesmentOverdue {
+  const _$FetchAssesmentOverdueImpl(
+      {required final List<AssessmentModel> assesment})
+      : _assesment = assesment;
+
+  final List<AssessmentModel> _assesment;
+  @override
+  List<AssessmentModel> get assesment {
+    if (_assesment is EqualUnmodifiableListView) return _assesment;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assesment);
+  }
+
+  @override
+  String toString() {
+    return 'AssesmentState.fetchAssesmentOverDue(assesment: $assesment)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAssesmentOverdueImpl &&
+            const DeepCollectionEquality()
+                .equals(other._assesment, _assesment));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_assesment));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAssesmentOverdueImplCopyWith<_$FetchAssesmentOverdueImpl>
+      get copyWith => __$$FetchAssesmentOverdueImplCopyWithImpl<
+          _$FetchAssesmentOverdueImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() noInternet,
+    required TResult Function(AssessmentModel assesment) createdAssesment,
+    required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
+    required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
+    required TResult Function(String error) error,
+    required TResult Function(int success) importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentOverDue(assesment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? noInternet,
+    TResult? Function(AssessmentModel assesment)? createdAssesment,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
+    TResult? Function(List<AssessmentModel> assesment)?
+        fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
+    TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
+    TResult? Function(String error)? error,
+    TResult? Function(int success)? importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentOverDue?.call(assesment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? noInternet,
+    TResult Function(AssessmentModel assesment)? createdAssesment,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
+    TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
+    TResult Function(String error)? error,
+    TResult Function(int success)? importQuestionBankSuccess,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentOverDue != null) {
+      return fetchAssesmentOverDue(assesment);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_CreatedAssesment value) createdAssesment,
+    required TResult Function(_FetchAssesment value) fetchAssesment,
+    required TResult Function(_FetchAssesmentForMyClass value)
+        fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
+    required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
+    required TResult Function(_AssessmentFailure value) error,
+    required TResult Function(_ImportQuestionBankSuccess value)
+        importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentOverDue(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_CreatedAssesment value)? createdAssesment,
+    TResult? Function(_FetchAssesment value)? fetchAssesment,
+    TResult? Function(_FetchAssesmentForMyClass value)?
+        fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
+    TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
+    TResult? Function(_AssessmentFailure value)? error,
+    TResult? Function(_ImportQuestionBankSuccess value)?
+        importQuestionBankSuccess,
+  }) {
+    return fetchAssesmentOverDue?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_CreatedAssesment value)? createdAssesment,
+    TResult Function(_FetchAssesment value)? fetchAssesment,
+    TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
+    TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
+    TResult Function(_AssessmentFailure value)? error,
+    TResult Function(_ImportQuestionBankSuccess value)?
+        importQuestionBankSuccess,
+    required TResult orElse(),
+  }) {
+    if (fetchAssesmentOverDue != null) {
+      return fetchAssesmentOverDue(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAssesmentOverdue implements AssesmentState {
+  const factory _FetchAssesmentOverdue(
+          {required final List<AssessmentModel> assesment}) =
+      _$FetchAssesmentOverdueImpl;
+
+  List<AssessmentModel> get assesment;
+  @JsonKey(ignore: true)
+  _$$FetchAssesmentOverdueImplCopyWith<_$FetchAssesmentOverdueImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2280,6 +3256,10 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -2297,6 +3277,8 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -2313,6 +3295,8 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -2334,6 +3318,9 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -2352,6 +3339,8 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -2369,6 +3358,8 @@ class _$FetchAssesmentBtIdImpl implements _FetchAssesmentBtId {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -2464,6 +3455,10 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -2481,6 +3476,8 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -2497,6 +3494,8 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -2518,6 +3517,9 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -2536,6 +3538,8 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -2553,6 +3557,8 @@ class _$AssessmentFailureImpl implements _AssessmentFailure {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?
@@ -2650,6 +3656,10 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     required TResult Function(List<AssessmentModel> assesment) fetchAssesment,
     required TResult Function(List<AssessmentModel> assesment)
         fetchAssesmentForMyClass,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentTodo,
+    required TResult Function(List<AssessmentModel> assesment)
+        fetchAssesmentOverDue,
     required TResult Function(AssessmentModel assesment) fetchAssesmentBtId,
     required TResult Function(String error) error,
     required TResult Function(int success) importQuestionBankSuccess,
@@ -2667,6 +3677,8 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     TResult? Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult? Function(List<AssessmentModel> assesment)?
         fetchAssesmentForMyClass,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult? Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult? Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult? Function(String error)? error,
     TResult? Function(int success)? importQuestionBankSuccess,
@@ -2683,6 +3695,8 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     TResult Function(AssessmentModel assesment)? createdAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesment,
     TResult Function(List<AssessmentModel> assesment)? fetchAssesmentForMyClass,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentTodo,
+    TResult Function(List<AssessmentModel> assesment)? fetchAssesmentOverDue,
     TResult Function(AssessmentModel assesment)? fetchAssesmentBtId,
     TResult Function(String error)? error,
     TResult Function(int success)? importQuestionBankSuccess,
@@ -2704,6 +3718,9 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     required TResult Function(_FetchAssesment value) fetchAssesment,
     required TResult Function(_FetchAssesmentForMyClass value)
         fetchAssesmentForMyClass,
+    required TResult Function(_FetchAssesmentTodo value) fetchAssesmentTodo,
+    required TResult Function(_FetchAssesmentOverdue value)
+        fetchAssesmentOverDue,
     required TResult Function(_FetchAssesmentBtId value) fetchAssesmentBtId,
     required TResult Function(_AssessmentFailure value) error,
     required TResult Function(_ImportQuestionBankSuccess value)
@@ -2722,6 +3739,8 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     TResult? Function(_FetchAssesment value)? fetchAssesment,
     TResult? Function(_FetchAssesmentForMyClass value)?
         fetchAssesmentForMyClass,
+    TResult? Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult? Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult? Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult? Function(_AssessmentFailure value)? error,
     TResult? Function(_ImportQuestionBankSuccess value)?
@@ -2739,6 +3758,8 @@ class _$ImportQuestionBankSuccessImpl implements _ImportQuestionBankSuccess {
     TResult Function(_CreatedAssesment value)? createdAssesment,
     TResult Function(_FetchAssesment value)? fetchAssesment,
     TResult Function(_FetchAssesmentForMyClass value)? fetchAssesmentForMyClass,
+    TResult Function(_FetchAssesmentTodo value)? fetchAssesmentTodo,
+    TResult Function(_FetchAssesmentOverdue value)? fetchAssesmentOverDue,
     TResult Function(_FetchAssesmentBtId value)? fetchAssesmentBtId,
     TResult Function(_AssessmentFailure value)? error,
     TResult Function(_ImportQuestionBankSuccess value)?

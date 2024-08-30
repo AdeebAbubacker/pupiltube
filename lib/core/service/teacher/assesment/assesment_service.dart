@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:puppil/core/connection/connectivity_checker.dart';
+import 'package:puppil/core/helper/connection/connectivity_checker.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
 import 'package:uuid/uuid.dart';

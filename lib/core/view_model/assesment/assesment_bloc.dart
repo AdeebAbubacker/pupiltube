@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/src/widgets/text.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
@@ -39,7 +40,6 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-
     on<_FetchAssesmentEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 
@@ -59,7 +59,6 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-
     on<_FetchAssesmentByIdEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 
@@ -83,7 +82,6 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-
     on<_FetchAssesmentForMyClassEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 
@@ -108,7 +106,54 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
+    on<_FetchAssesmentToDo>((event, emit) async {
+      emit(const AssesmentState.loading());
 
+      try {
+        final result = await assesmentStudentService.getAssessmentsToDoForUser(
+            uid: "1YBTaDudA2MWwGrPlwpy8EYip4m1");
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchAssesmentTodo(assesment: success));
+        });
+      } catch (e) {
+        print('An error');
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
+    on<_FetchAssesmentOverDue>((event, emit) async {
+      emit(const AssesmentState.loading());
+
+      try {
+        final result = await assesmentStudentService
+            .getOverdueAssessmentsForUser(uid: "1YBTaDudA2MWwGrPlwpy8EYip4m1");
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchAssesmentOverDue(assesment: success));
+        });
+      } catch (e) {
+        print('An error');
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
     on<_ImportQuestionBankEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 

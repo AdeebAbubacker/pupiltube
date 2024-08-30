@@ -47,19 +47,18 @@ class AppRouteService {
     );
   }
 
-  static void navigateSigninRoleScreen(
+  static void navigateSigninScreen(
     BuildContext context,
   ) {
     Navigator.of(context).pushNamed(
-      '/signinRoleScreen',
+      '/signinScreen',
     );
   }
 
-  static void navigateSigninScreen(BuildContext context,
-      {required int roleId}) {
-    Navigator.of(context).pushNamed(
-      '/signinScreen',
-      arguments: roleId,
+  static void navigateToIntroScreenCleared(BuildContext context) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      '/introScreen',
+      (Route route) => false,
     );
   }
 
@@ -71,12 +70,15 @@ class AppRouteService {
     );
   }
 
-   static void navigateToStudentDashboard(BuildContext context) {
+  static void navigateToStudentDashboard(BuildContext context) {
     Navigator.of(context).pushNamed('/studentDashboard');
   }
 
-   static void navigateToTeacherDashboard(BuildContext context) {
+  static void navigateToTeacherDashboard(BuildContext context) {
     Navigator.of(context).pushNamed('/teacherDashboard');
+  }
+  static void navigateToAdminDashboard(BuildContext context) {
+    Navigator.of(context).pushNamed('/adminDashboard');
   }
 
   static Route _assesmentDoYouKnow() {

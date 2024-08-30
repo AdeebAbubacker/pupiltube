@@ -3,156 +3,274 @@
 import 'package:flutter/material.dart';
 import 'package:puppil/core/constant/text_style.dart';
 
-class AssesmentScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puppil/core/helper/token/get_uid.dart';
+import 'package:puppil/core/routes/app_route.dart';
+import 'package:puppil/core/service/student/student_submission/student_submission_service.dart';
+import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
+
+class AssesmentScreen extends StatefulWidget {
   const AssesmentScreen({super.key});
+
+  @override
+  State<AssesmentScreen> createState() => _AssesmentScreenState();
+}
+
+class _AssesmentScreenState extends State<AssesmentScreen> {
+  final ScrollController _scrollController = ScrollController();
+  String _selectedButton = "All"; // Default selected button
+
+  void _scrollToItem(double position, String buttonLabel) {
+    setState(() {
+      _selectedButton = buttonLabel;
+    });
+    _scrollController.animateTo(
+      position,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      String? uid = await getUserUID();
+      if (uid != null) {
+        BlocProvider.of<AssesmentBloc>(context).add(
+          AssesmentEvent.fetchAssesmentForMyClassEvent(id: uid),
+        );
+      } else {
+        print("No user is signed in.");
+        // Handle no user case if needed
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 10),
-        Text(
-          'My Assesments',
-          style: TextStyles.rubik16grey367,
-        ),
-        const SizedBox(height: 40),
-        SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          child: Row(
+        SizedBox(height: 40),
+        Container(
+          height: 200,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 255, 93, 93),
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          child: Stack(
             children: [
-              AssesmentPageViewButton(
-                  image: 'assets/icon/lightbulb.png',
-                  title: 'All Assesment',
-                  color: Color.fromARGB(255, 255, 233, 231)),
-              SizedBox(width: 10),
-              AssesmentPageViewButton(
-                image: 'assets/icon/announcement.png',
-                title: 'Upcming',
-                color: Color.fromARGB(255, 255, 249, 223),
+              Positioned(
+                right: 10,
+                top: 30,
+                child: Image.asset(
+                  'assets/assesment/assesment_dashboard.png',
+                  height: 140,
+                ),
               ),
-              SizedBox(width: 10),
-              AssesmentPageViewButton(
-                image: 'assets/icon/announcement.png',
-                title: 'Overdue',
-                color: Color.fromARGB(255, 228, 223, 255),
-              ),
+              Positioned(
+                  left: 10,
+                  top: 40,
+                  child: SizedBox(
+                    width: 180,
+                    child: Wrap(
+                      children: [
+                        Text(
+                          "Start Your Assesment Journey with Pupil Tube",
+                          style: TextStyles.rubik14whiteFFw600,
+                        )
+                      ],
+                    ),
+                  )),
             ],
           ),
         ),
         SizedBox(height: 20),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: 30,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        color: Colors.grey,
-                      ),
-                      SizedBox(width: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Physics", // Add your subject name here
-                            style: TextStyles.ibm14redDA6,
-                          ),
-                          Text(
-                            "Chapter 1",
-                            style: TextStyles.ibm14redDA6,
-                          ),
-                          Text(
-                            "10 Question",
-                            style: TextStyles.rubik12greyDA6,
-                          ),
-                          Text(
-                            "3 Hour 15 min",
-                            style: TextStyles.rubik12greyDA6,
-                          )
-                        ],
-                      ),
-                      Spacer(),
-                      IconButton(
-                          onPressed: () {}, icon: Icon(Icons.arrow_forward_ios))
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
+        Text(
+          "My Assesment",
+          style: TextStyles.rubik14black54A,
         ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: _scrollController,
+          child: Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(0, "All");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentForMyClassEvent(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "All"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("All"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(10, "Todo");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentToDo(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Todo"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Todo"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(40, "Overdue");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentOverDue(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Overdue"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Overdue"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(50, "Completed");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Completed"
+                      ? const Color.fromARGB(255, 252, 112, 102)
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Completed"),
+              ),
+            ],
+          ),
+        ),
+        Center(
+          child: BlocBuilder<AssesmentBloc, AssesmentState>(
+            builder: (context, state) {
+              return state.maybeMap(loading: (value) {
+                return Text("Loading");
+              }, fetchAssesmentOverDue: (value) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: value.assesment.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: const Color.fromARGB(255, 199, 199, 199)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text("${value.assesment[index].description}"),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      AppRouteService.navigateTotest2(context,
+                                          assementmodel:
+                                              value.assesment[index]);
+                                    },
+                                    child: Text("data"))
+                              ],
+                            ),
+                          )),
+                    );
+                  },
+                );
+              }, fetchAssesmentForMyClass: (value) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: value.assesment.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: const Color.fromARGB(255, 199, 199, 199)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text("${value.assesment[index].description}"),
+                                Spacer(),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      AppRouteService.navigateTotest2(context,
+                                          assementmodel:
+                                              value.assesment[index]);
+                                    },
+                                    child: Text("data"))
+                              ],
+                            ),
+                          )),
+                    );
+                  },
+                );
+              }, fetchAssesmentTodo: (value) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: value.assesment.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: const Color.fromARGB(255, 199, 199, 199)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text("${value.assesment[index].description}"),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      AppRouteService.navigateTotest2(context,
+                                          assementmodel:
+                                              value.assesment[index]);
+                                    },
+                                    child: Text("data"))
+                              ],
+                            ),
+                          )),
+                    );
+                  },
+                );
+              }, orElse: () {
+                return Text('data');
+              });
+            },
+          ),
+        ),
+        SizedBox(height: 40),
       ],
-    );
-  }
-}
-
-class AssesmentPageViewButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final Color color;
-  final String title;
-  final String image;
-  AssesmentPageViewButton({
-    super.key,
-    required this.title,
-    required this.image,
-    required this.color,
-    this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(3)),
-          color: color,
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 30.0,
-                height: 30.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(image),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            Text(title),
-            SizedBox(width: 5)
-          ],
-        ),
-      ),
     );
   }
 }

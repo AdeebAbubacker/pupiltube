@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
 
-class Screen5 extends StatelessWidget {
-  const Screen5({super.key});
+class AdminDashboardScreen extends StatelessWidget {
+  const AdminDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,10 @@ class Screen5 extends StatelessWidget {
             },
             orElse: () {});
       },
-      child: Container(
-        child: Column(
+      child: Scaffold(
+        body: Column(
           children: [
-            Center(
-              child: Text("Screen 5 "),
-            ),
+            Text("Admin SCreen coming soon"),
             ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<LoginBloc>(context)

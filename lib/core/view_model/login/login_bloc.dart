@@ -31,5 +31,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginState.loginFailure(error: 'An error occurred: $e'));
       }
     });
+
+    on<_LogoutRequested>((event, emit) async {
+      emit(const LoginState.loading());
+
+      try {
+        final result = await authService.logout();
+
+        await result.fold((failure) async {
+          emit(const LoginState.logoutFailure(status: false));
+        }, (success) async {
+          // var accessToken = await SetSharedPreferences.storeAccessToken(
+          //         success.misc.accessToken) ??
+          //     'Access Token empty';
+          emit(LoginState.logoutSuccess(status: success!));
+        });
+      } catch (e) {
+        emit(const LoginState.logoutFailure(status: false));
+      }
+    });
   }
 }

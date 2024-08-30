@@ -59,7 +59,8 @@ class AuthService {
     required String name,
     required String email,
     required String password,
-    required String classId, // New parameter to specify the class ID
+    String? classId, // New parameter to specify the class ID
+    required int role, // New parameter to specify the class ID
   }) async {
     try {
       // Sign up with Firebase Auth
@@ -71,9 +72,6 @@ class AuthService {
 
       // Get the generated UID
       String uid = userCredential.user?.uid ?? '';
-
-      // Determine role based on the input (assuming role is an integer)
-      int role = 1; // Default role; update based on your logic or input
 
       // Save additional user data in Firestore
       await _db.collection('Users').doc(uid).set({
@@ -121,5 +119,46 @@ class AuthService {
       print('Error during sign up: $e');
       // Handle errors (e.g., logging, user notification)
     }
+  }
+
+  Future<Either<bool, bool>> logout() async {
+    try {
+      await _firebaseAuth.signOut();
+      return const Right(true);
+    } catch (e) {
+      return const Left(false);
+    }
+  }
+}
+
+class UpdateMyAssesment {
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  Future<void> myasssement() async {
+    try {
+      await _db
+          .collection('assessments')
+          .doc("7980a931-0848-44c3-b494-a719119b939b")
+          .update({
+        'questions': [
+          {
+            'questionId': 'f2730af3-2cf9-4a7e-a731-566029856b33',
+            'question': 'What is essential for plant growth?',
+            'options': ['Water', 'Air', 'Sunlight', 'Soil'],
+            'answer': 'Water'
+          },
+          {
+            'questionId': '48824fe6-e22a-45aa-9114-17805026f9c5',
+            'question': 'Which of these animals lives in water?',
+            'options': ['Dog', 'Cat', 'Bird', 'Fish'],
+            'answer': 'Fish'
+          }
+        ],
+      });
+    } catch (e) {
+      // Handle the exception
+      print(e);
+    }
+    return; // Explicitly return null
   }
 }

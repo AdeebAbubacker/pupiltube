@@ -23,7 +23,7 @@ class _SigninScreenState extends State<SigninScreen> {
           loading: (value) {},
           loginSuccess: (value) {
             if (value.role == 1) {
-              print('admin');
+               AppRouteService.navigateToAdminDashboard(context);
             } else if (value.role == 2) {
               AppRouteService.navigateToTeacherDashboard(context);
               print('teacher');

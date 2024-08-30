@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
 import 'package:puppil/UI/Screens/student/feedback/feedback_screen.dart';
 import 'package:puppil/UI/Screens/student/home/home_screen.dart';
-import 'package:puppil/UI/Widget/homeappbar.dart';
-import 'package:puppil/UI/Widget/miscappbar.dart';
-import 'package:puppil/core/constant/text_style.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puppil/core/routes/app_route.dart';
+import 'package:puppil/core/view_model/login/login_bloc.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({super.key});
@@ -69,7 +71,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                               _selectedIndex == 2 ||
                               _selectedIndex == 3 ||
                               _selectedIndex == 4) {
-                            _selectedIndex = 0; 
+                            _selectedIndex = 0;
                           }
                         },
                       );
@@ -135,8 +137,32 @@ class Screen5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text("Screen 5 ")),
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        state.maybeMap(
+            logoutSuccess: (value) {
+              AppRouteService.navigateToIntroScreenCleared(context);
+            },
+            logoutFailure: (value) {
+              print('failure');
+            },
+            orElse: () {});
+      },
+      child: Container(
+        child: Column(
+          children: [
+            Center(
+              child: Text("Screen 5 "),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  BlocProvider.of<LoginBloc>(context)
+                      .add(LoginEvent.logoutRequested());
+                },
+                child: Text("logout"))
+          ],
+        ),
+      ),
     );
   }
 }

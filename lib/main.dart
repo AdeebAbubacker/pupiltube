@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-//-------------------------------------------------------------------------
-
+//-----// ignore_for_file: prefer_const_constructors
+//---------------------------------------
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puppil/UI/Screens/admin/loyout_screen.dart';
 import 'package:puppil/UI/Screens/auth/intro_screen.dart';
 import 'package:puppil/UI/Screens/auth/signin_screen.dart';
 import 'package:puppil/UI/Screens/auth/signin_role_screen.dart';
@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashScreen(),
           '/introScreen': (context) => IntroScreen(),
           '/signupRoleScreen': (context) => SignUpRolePage(),
-          '/signinRoleScreen': (context) => SigninRoleScreen(),
+         // '/signinRoleScreen': (context) => SigninRoleScreen(),
           '/signinScreen': (context) => SigninScreen(),
           '/signupScreen': (context) => SignupScreen(),
           '/test2': (context) => TestScreen2(),
@@ -92,6 +92,7 @@ class MyApp extends StatelessWidget {
           '/assesmentCreation': (context) => AssesmentCreationScreen(),
           '/studentDashboard': (context) => StudentDashboardScreen(),
           '/teacherDashboard': (context) => TeachesDashboardScreen(),
+          '/adminDashboard': (context) => AdminDashboardScreen(),
         },
       ),
     );

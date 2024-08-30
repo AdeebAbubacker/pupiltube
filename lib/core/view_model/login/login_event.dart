@@ -7,4 +7,5 @@ class LoginEvent with _$LoginEvent {
     required String email,
     required String password,
   }) = _LoginRequested;
+  const factory LoginEvent.logoutRequested() = _LogoutRequested;
 }

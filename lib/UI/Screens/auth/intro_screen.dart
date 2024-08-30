@@ -53,7 +53,9 @@ class IntroScreen extends StatelessWidget {
                         backgroundColor: WidgetStateProperty.all(
                             const Color.fromARGB(255, 227, 146, 24))),
                     onPressed: () async {
-                      AppRouteService.navigateSigninRoleScreen(context);
+                      AppRouteService.navigateSigninScreen(
+                        context,
+                      );
                     },
                     child: const Text(
                       "Sign In",

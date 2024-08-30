@@ -42,35 +42,7 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              AssesmentPageViewButton(
-                image: 'assets/icon/lightbulb.png',
-                title: 'My Assesment',
-                color: page == 0
-                    ? Color.fromARGB(255, 237, 63, 47)
-                    : Color.fromARGB(255, 255, 233, 231),
-                onPressed: () {
-                  setState(() {
-                    page = 0;
-                  });
-                },
-              ),
-              SizedBox(width: 10),
-              AssesmentPageViewButton(
-                image: 'assets/icon/announcement.png',
-                title: 'Create Assesment',
-                color: page == 1
-                    ? Color.fromARGB(255, 230, 198, 60)
-                    : Color.fromARGB(255, 255, 249, 223),
-                onPressed: () {
-                  setState(() {
-                    page = 1;
-                  });
-                  AppRouteService.navigateToassesmentDoYouKnow(
-                      context); // Updated method call
-                },
-              ),
-            ],
+            children: [],
           ),
         ),
         const SizedBox(height: 40),
@@ -83,7 +55,6 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
                   shrinkWrap: true,
                   itemCount: value.assesment.length,
                   itemBuilder: (context, index) {
-           
                     return Card(
                       color: const Color.fromARGB(255, 13, 126, 182),
                       child: Padding(
