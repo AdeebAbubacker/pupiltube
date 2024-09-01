@@ -3,37 +3,6 @@ import 'package:uuid/uuid.dart';
 
 class StudentSubmissionService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  // Future<void> submitStudentSubmission({
-  //   required String studentId,
-  //   required String assessmentId,
-  //   required List<Map<String, dynamic>> answers,
-  //   required int score,
-  //   required String status,
-  // }) async {
-  //   final String notificationId = const Uuid().v4();
-
-  //   final studentSubmission = {
-  //     "submissionId": notificationId,
-  //     "studentId": studentId,
-  //     "assessmentId": "2dae8f20-3254-40ab-9624-70779d3b5947",
-  //     "answers": answers,
-  //     "score": score,
-  //     "status": status,
-  //     "submittedAt": DateTime.now().toUtc().toIso8601String()
-  //   };
-
-  //   try {
-  //     await _firestore
-  //         .collection('studentSubmissions')
-  //         .doc(notificationId)
-  //         .set(studentSubmission);
-  //     print(studentSubmission);
-  //   } catch (e) {
-  //     print('Failed to create notification: $e');
-  //   }
-  // }
-
   Future<void> submitStudentSubmission({
     required String studentId,
     required String assessmentId,
@@ -65,7 +34,7 @@ class StudentSubmissionService {
         final studentSubmission = {
           "submissionId": submissionId,
           "studentId": studentId,
-          "assessmentId": "2dae8f20-3254-40ab-9624-70779d3b5947",
+          "assessmentId":assessmentId,
           "answers": answers,
           "score": score,
           "status": status,

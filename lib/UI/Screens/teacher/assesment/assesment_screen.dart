@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
@@ -19,6 +18,19 @@ class AssesmentScreen extends StatefulWidget {
 int page = 0;
 
 class _AssesmentScreenState extends State<AssesmentScreen> {
+  final ScrollController _scrollController = ScrollController();
+  String _selectedButton = "All"; // Default selected button
+  void _scrollToItem(double position, String buttonLabel) {
+    setState(() {
+      _selectedButton = buttonLabel;
+    });
+    _scrollController.animateTo(
+      position,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   void initState() {
     setState(() {
@@ -39,10 +51,82 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
         const SizedBox(height: 10),
         const SizedBox(height: 40),
         SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
+          controller: _scrollController,
           child: Row(
-            children: [],
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(0, "All");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentForMyClassEvent(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "All"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("All"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(0, "Ongoing");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentForMyClassEvent(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Ongoing"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Ongoing"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(10, "Todo");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentToDo(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Todo"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Darft"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(40, "Overdue");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentOverDue(
+                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Overdue"
+                      ? Colors.red
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("popular"),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  _scrollToItem(50, "Completed");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _selectedButton == "Completed"
+                      ? const Color.fromARGB(255, 252, 112, 102)
+                      : const Color.fromARGB(255, 235, 235, 235),
+                ),
+                child: Text("Archive"),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 40),
@@ -82,23 +166,43 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
                               ),
                               Spacer(),
                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: const Color.fromARGB(
-                                          255, 199, 198, 198),
-                                    ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: const Color.fromARGB(
+                                              255, 199, 198, 198),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: const Color.fromARGB(
+                                              255, 199, 198, 198),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: const Color.fromARGB(
-                                          255, 199, 198, 198),
-                                    ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                       IconButton(
+                                        onPressed: () {
+                                          AppRouteService.navigateToAssesmentStatus(
+                                              context,
+                                              assementId:
+                                                  "1YBTaDudA2MWwGrPlwpy8EYip4m1");
+                                        },
+                                        icon: Icon(Icons.arrow_forward_ios),
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),

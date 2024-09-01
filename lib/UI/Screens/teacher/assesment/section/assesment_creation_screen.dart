@@ -178,9 +178,9 @@ class AssesmentCreationScreen extends StatelessWidget {
                                     child: Text("Import From Question Bank"),
                                   ),
                                 ),
-                                Text('${modelToAssesmentCreation.assementId}'),
-                                Text('${modelToAssesmentCreation.title}'),
-                                Text('${modelToAssesmentCreation.description}'),
+                                Text(modelToAssesmentCreation.assementId),
+                                Text(modelToAssesmentCreation.title),
+                                Text(modelToAssesmentCreation.description),
                                 BlocBuilder<AssesmentBloc, AssesmentState>(
                                   builder: (context, state) {
                                     return state.maybeMap(

@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 
@@ -29,7 +28,7 @@ class IntroScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 250,
                 height: 345,
                 child: Image.asset('assets/animated/School boy studying.gif'),

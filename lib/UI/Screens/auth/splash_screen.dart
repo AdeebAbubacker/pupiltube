@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 2), () async {
+    Future.delayed(const Duration(seconds: 2), () async {
       final User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {

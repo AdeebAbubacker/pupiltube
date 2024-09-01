@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
-import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
 
@@ -54,12 +53,14 @@ class _QuestionBankPopupState extends State<QuestionBankPopup> {
 }
 
 class PopupContent extends StatefulWidget {
+  const PopupContent({super.key});
+
   @override
   _PopupContentState createState() => _PopupContentState();
 }
 
 class _PopupContentState extends State<PopupContent> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int _currentPage = 0;
   QuestionBank? _data; // Default data to pass to the next page
   List<Question> selectedQuestions = [];
@@ -151,7 +152,7 @@ class _PopupContentState extends State<PopupContent> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '${value.assesment[index].title}',
+                                                value.assesment[index].title,
                                                 style: TextStyle(fontSize: 5),
                                               ),
                                               Text(

@@ -23,7 +23,7 @@ class _SigninScreenState extends State<SigninScreen> {
           loading: (value) {},
           loginSuccess: (value) {
             if (value.role == 1) {
-               AppRouteService.navigateToAdminDashboard(context);
+              AppRouteService.navigateToAdminDashboard(context);
             } else if (value.role == 2) {
               AppRouteService.navigateToTeacherDashboard(context);
               print('teacher');
@@ -122,6 +122,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                           onPressed: () {
+                            print("objectxxxxxxxxx");
                             BlocProvider.of<LoginBloc>(context).add(
                               LoginEvent.loginRequested(
                                 email: emailController.text,
@@ -129,7 +130,7 @@ class _SigninScreenState extends State<SigninScreen> {
                               ),
                             );
                           },
-                          child: const Text("Login")),
+                          child: const Text("Login ffffffff")),
                     )
                   ],
                 ),

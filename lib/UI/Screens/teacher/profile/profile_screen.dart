@@ -22,15 +22,15 @@ class Screen5 extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Center(
+            const Center(
               child: Text("Screen 5 "),
             ),
             ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<LoginBloc>(context)
-                      .add(LoginEvent.logoutRequested());
+                      .add(const LoginEvent.logoutRequested());
                 },
-                child: Text("logout"))
+                child: const Text("logout"))
           ],
         ),
       ),

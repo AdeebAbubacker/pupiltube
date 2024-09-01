@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class SubmissionModel {
   final String? submissionId;
   final String? studentId;
+  String? studentName;
   final String? assessmentId;
   final List<Answer>? answers;
   final num? score;
@@ -12,6 +13,7 @@ class SubmissionModel {
     this.submissionId,
     this.studentId,
     this.assessmentId,
+    this.studentName,
     this.answers,
     this.score,
     this.submittedAt,
@@ -21,13 +23,14 @@ class SubmissionModel {
   factory SubmissionModel.fromMap(Map<String, dynamic> map) {
     return SubmissionModel(
       submissionId: map['submissionId'] as String?,
+      studentName: map['studentName'] as String?,
       studentId: map['studentId'] as String?,
       assessmentId: map['assessmentId'] as String?,
       answers: (map['answers'] as List<dynamic>?)
           ?.map((item) => Answer.fromMap(item as Map<String, dynamic>))
           .toList(),
       score: map['score'] as num?,
-      submittedAt: map['submittedAt'] as Timestamp?,
+      submittedAt: _parseTimestamp(map['submittedAt']),
     );
   }
 
@@ -36,11 +39,29 @@ class SubmissionModel {
     return {
       'submissionId': submissionId,
       'studentId': studentId,
+      'studentName': studentName,
       'assessmentId': assessmentId,
       'answers': answers?.map((item) => item.toMap()).toList(),
       'score': score,
       'submittedAt': submittedAt,
     };
+  }
+
+  // Helper method to parse Timestamp safely
+  static Timestamp? _parseTimestamp(dynamic value) {
+    if (value is Timestamp) {
+      return value;
+    } else if (value is String) {
+      try {
+        // Convert String to DateTime, then to Timestamp
+        DateTime parsedDate = DateTime.parse(value);
+        return Timestamp.fromDate(parsedDate);
+      } catch (e) {
+        print('Error parsing date string: $e');
+        return null;
+      }
+    }
+    return null;
   }
 }
 
@@ -73,4 +94,3 @@ class Answer {
     };
   }
 }
-

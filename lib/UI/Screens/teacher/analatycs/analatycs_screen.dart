@@ -6,7 +6,7 @@ class AnalatycsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
+      child: const Center(
           child: Text(
               "Assessment Analytic , Overall Performance: , Performance Chart/Graphs ,  Question-Level Analysis:  , Analysis Chart/Graphs,  Student Performance Trends:,  Trends Chart/Graphs, Feedback & Improvement Areas:,  Feedback Summary , [Export Reports Button]   , [Comparison Tools Button]")),
     );

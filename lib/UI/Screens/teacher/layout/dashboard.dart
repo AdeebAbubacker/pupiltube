@@ -7,9 +7,6 @@ import 'package:puppil/UI/Screens/teacher/questions/question_screen.dart';
 import 'package:puppil/UI/Screens/teacher/home/home_screen.dart';
 import 'package:puppil/UI/Screens/teacher/profile/profile_screen.dart';
 import 'package:puppil/UI/Screens/teacher/analatycs/analatycs_screen.dart';
-import 'package:puppil/UI/Widget/homeappbar.dart';
-import 'package:puppil/UI/Widget/miscappbar.dart';
-import 'package:puppil/core/constant/text_style.dart';
 
 class TeachesDashboardScreen extends StatefulWidget {
   const TeachesDashboardScreen({super.key});

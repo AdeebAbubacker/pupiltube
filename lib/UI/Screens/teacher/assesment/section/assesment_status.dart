@@ -4,8 +4,8 @@ import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/view_model/studentToAttend/students_to_attend_bloc.dart';
 import 'package:puppil/core/view_model/student_submission/student_submission_bloc.dart';
 
-class DEeeeeeeeeeeeeeeeey extends StatelessWidget {
-  const DEeeeeeeeeeeeeeeeey({super.key});
+class AssesmentStatus extends StatelessWidget {
+  const AssesmentStatus({super.key});
 
   @override
   Widget build(BuildContext context) {

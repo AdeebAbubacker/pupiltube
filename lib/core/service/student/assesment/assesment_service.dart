@@ -114,17 +114,17 @@ class AssesmentStudentService {
           } else {
             print("All assessments are submitted or overdue.");
             // All assessments have submissions or are overdue
-            return Left('All assessments are submitted or overdue.');
+            return const Left('All assessments are submitted or overdue.');
           }
         } else {
           print("No assessments found for the class");
           // No assessments found for the class
-          return Left('No assessments found for the class');
+          return const Left('No assessments found for the class');
         }
       } else {
         print("User is not part of any class");
         // User not found in any class
-        return Left('User is not part of any class');
+        return const Left('User is not part of any class');
       }
     } catch (e) {
       print('Error: ${e.toString()}');
@@ -199,17 +199,17 @@ class AssesmentStudentService {
           } else {
             print("No overdue assessments found.");
             // No overdue assessments found
-            return Left('No overdue assessments found.');
+            return const Left('No overdue assessments found.');
           }
         } else {
           print("No assessments found for the class");
           // No assessments found for the class
-          return Left('No assessments found for the class');
+          return const Left('No assessments found for the class');
         }
       } else {
         print("User is not part of any class");
         // User not found in any class
-        return Left('User is not part of any class');
+        return const Left('User is not part of any class');
       }
     } catch (e) {
       print('Error: ${e.toString()}');

@@ -19,7 +19,7 @@ class QuestionBankService {
       if (!hasInternet) {
         return const Left(0);
       }
-      final String questionBankId = Uuid().v4();
+      final String questionBankId = const Uuid().v4();
 
       final questionBank = {
         "questionBankId": questionBankId,
@@ -144,7 +144,7 @@ class QuestionBankService {
       if (!hasInternet) {
         return const Left(0);
       }
-      final String questionBankId = Uuid().v4();
+      final String questionBankId = const Uuid().v4();
 
       final questionBank = {
         "classId": questionBankId,

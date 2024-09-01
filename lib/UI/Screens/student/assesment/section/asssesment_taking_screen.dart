@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 class AssessmentTakingPage extends StatefulWidget {
+  const AssessmentTakingPage({super.key});
+
   @override
   _AssessmentTakingPageState createState() => _AssessmentTakingPageState();
 }

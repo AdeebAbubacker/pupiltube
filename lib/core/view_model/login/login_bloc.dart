@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 
@@ -44,7 +43,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           // var accessToken = await SetSharedPreferences.storeAccessToken(
           //         success.misc.accessToken) ??
           //     'Access Token empty';
-          emit(LoginState.logoutSuccess(status: success!));
+          emit(LoginState.logoutSuccess(status: success));
         });
       } catch (e) {
         emit(const LoginState.logoutFailure(status: false));

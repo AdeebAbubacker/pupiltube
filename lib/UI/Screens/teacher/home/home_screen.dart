@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:puppil/UI/Widget/homeappbar.dart';
 import 'package:puppil/core/constant/text_style.dart';
-import 'package:puppil/core/models/subject/subject_model.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

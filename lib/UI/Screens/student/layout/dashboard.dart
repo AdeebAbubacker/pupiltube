@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
 import 'package:puppil/UI/Screens/student/feedback/feedback_screen.dart';
-import 'package:puppil/UI/Screens/student/home/home_screen.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
+import 'package:puppil/test/test_screen.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({super.key});
@@ -21,7 +20,7 @@ class StudentDashboardScreen extends StatefulWidget {
 class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   int _selectedIndex = 1;
   static final List<Widget> _screens = [
-    HomeScreen(),
+    DEeeeeeeeeeeeeeeeey(),
     const AssesmentScreen(),
     const StudentSubmission(),
     const Screen4(),

@@ -18,7 +18,7 @@ class QuestionBankManagementScreen extends StatelessWidget {
           style: TextStyles.rubik16grey367,
         ),
         SizedBox(height: 10),
-        Container(
+        SizedBox(
             width: MediaQuery.of(context).size.width * 0.7,
             child: Image.asset(
               'assets/animated/maths.gif',

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puppil/core/helper/connection/connectivity_checker.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
+import 'package:puppil/core/models/submission/submission_model.dart';
 import 'package:uuid/uuid.dart';
 import 'package:dartz/dartz.dart';
 
@@ -49,7 +50,7 @@ class AssesmentService {
           {
             "startTime": Timestamp.now(),
             "endTime": Timestamp.fromDate(
-              DateTime.now().add(Duration(hours: 1)),
+              DateTime.now().add(const Duration(hours: 1)),
             ),
           }, // Default time slot
       "status": "draft", // Default status
@@ -200,4 +201,88 @@ class AssesmentService {
       print('Failed to create notification: $e');
     }
   }
+
+  Future<Either<String, List<SubmissionModel>>>
+      getListOfSubmissionByAssessmentId({
+    required String uid,
+  }) async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        print("No internet");
+        return const Left('No internet connection');
+      }
+      QuerySnapshot classesSnapshot = await _firestore
+          .collection('studentSubmissions')
+          .where('assessmentId',
+              isEqualTo: "2862d12e-2da2-4d38-9420-793caf61b627")
+          .get();
+
+      List<SubmissionModel> submissionList = classesSnapshot.docs.map((doc) {
+        return SubmissionModel.fromMap(doc.data() as Map<String, dynamic>);
+      }).toList();
+
+      for (var submission in submissionList) {
+        DocumentSnapshot userSnapshot = await _firestore
+            .collection('Users')
+            .doc(submission.studentId)
+            .get();
+
+        if (userSnapshot.exists) {
+          var userData = userSnapshot.data() as Map<String, dynamic>;
+          submission.studentName = userData['name'] ?? 'Unknown';
+        } else {
+          submission.studentName = 'Unknown';
+        }
+      }
+
+      return Right(submissionList);
+    } catch (e) {
+      return Left('Failed to check overdue assessments: ${e.toString()}');
+    }
+  }
+
+  Future<Either<String, String>> getClassIdFromAssessment({
+    required String assessmentId,
+  }) async {
+    try {
+      // Check for internet connectivity
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        print("No internet");
+        return const Left('No internet connection');
+      }
+
+      // Fetch the assessment document using the assessmentId
+      DocumentSnapshot assessmentSnapshot =
+          await _firestore.collection('assessments').doc(assessmentId).get();
+
+      // Check if the assessment document exists
+      if (!assessmentSnapshot.exists) {
+        print("Assessment not found");
+        return const Left('Assessment not found');
+      }
+
+      // Extract classId from the assessment document
+      var assessmentData = assessmentSnapshot.data() as Map<String, dynamic>;
+      String? classId = assessmentData['classId'];
+
+      // Check if classId is present in the assessment document
+      if (classId == null) {
+        print("Class ID not found in assessment");
+        return const Left('Class ID not found in assessment');
+      }
+
+      print('Class ID: $classId');
+      return Right(classId);
+    } catch (e) {
+      print('Error: ${e.toString()}');
+      return Left('Failed to fetch class ID: ${e.toString()}');
+    }
+  }
+
+
+
+
 }
+

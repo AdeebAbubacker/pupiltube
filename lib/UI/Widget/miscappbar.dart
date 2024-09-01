@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 
 class MiscAppBar extends StatefulWidget {
   final bool isthereQr;
@@ -33,7 +31,7 @@ class _MiscAppBarState extends State<MiscAppBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
             const Spacer(),
             Container(
               constraints: const BoxConstraints(
@@ -47,7 +45,7 @@ class _MiscAppBarState extends State<MiscAppBar> {
               ),
             ),
             const Spacer(),
-            IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           ],
         ),
       ),

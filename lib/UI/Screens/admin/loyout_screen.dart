@@ -22,13 +22,13 @@ class AdminDashboardScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            Text("Admin SCreen coming soon"),
+            const Text("Admin SCreen coming soon"),
             ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<LoginBloc>(context)
-                      .add(LoginEvent.logoutRequested());
+                      .add(const LoginEvent.logoutRequested());
                 },
-                child: Text("logout"))
+                child: const Text("logout"))
           ],
         ),
       ),

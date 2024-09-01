@@ -145,7 +145,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(
-                          '${value == "d0087d35-9bdc-4d3b-af95-de9b1b910c41" ? "class4 " : "Class 5"}',
+                          value == "d0087d35-9bdc-4d3b-af95-de9b1b910c41" ? "class4 " : "Class 5",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),

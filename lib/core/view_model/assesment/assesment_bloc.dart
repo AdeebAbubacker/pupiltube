@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/src/widgets/text.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
 import 'package:puppil/core/service/student/assesment/assesment_service.dart';
 import 'package:puppil/core/service/teacher/assesment/assesment_service.dart';
-import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
 
 part 'assesment_event.dart';
 part 'assesment_state.dart';
@@ -18,7 +15,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
   AssesmentBloc({
     required this.assesmentService,
     required this.assesmentStudentService,
-  }) : super(_Initial()) {
+  }) : super(const _Initial()) {
     on<_CreateAssessment>((event, emit) async {
       emit(const AssesmentState.loading());
 
@@ -87,7 +84,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
 
       try {
         final result =
-            await assesmentStudentService.fetchClassIdForStudent(event!.id);
+            await assesmentStudentService.fetchClassIdForStudent(event.id);
 
         await result.fold((failure) async {
           if (failure == 0) {

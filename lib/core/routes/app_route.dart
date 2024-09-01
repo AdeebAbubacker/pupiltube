@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puppil/UI/Screens/auth/intro_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_creation_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_doyouknow_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_intro_screen.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
@@ -35,7 +33,7 @@ class AppRouteService {
 
   static void navigateToIntroScreen(BuildContext context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => IntroScreen()),
+      MaterialPageRoute(builder: (context) => const IntroScreen()),
     );
   }
 
@@ -81,6 +79,12 @@ class AppRouteService {
     Navigator.of(context).pushNamed('/adminDashboard');
   }
 
+    static void navigateToAssesmentStatus(BuildContext context,
+      {required String assementId}) {
+    Navigator.of(context).pushNamed('/assesmentStatus', arguments: assementId);
+  }
+
+
   static Route _assesmentDoYouKnow() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
@@ -123,29 +127,7 @@ class AppRouteService {
     );
   }
 
-  //   static Route _assesmentCreation() {
-  //   return PageRouteBuilder(
-  //     pageBuilder: (context, animation, secondaryAnimation) =>
-  //         AssesmentCreationScreen(), // Replace with your target screen
-  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-  //       const begin = Offset(1.0, 0.0); // Start from right to left
-  //       const end = Offset.zero;
-  //       const curve = Curves.easeInOut;
-
-  //       var tween =
-  //           Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-  //       var offsetAnimation = animation.drive(tween);
-
-  //       return SlideTransition(
-  //         position: offsetAnimation,
-  //         child: child,
-  //       );
-  //     },
-  //   );
-  // }
-//  static void navigateToassesmentCreation(BuildContext context) {
-//     Navigator.of(context).push(_assesmentCreation());
-//   }
+  
 }
 
 class ModelToAssesmentCreation {

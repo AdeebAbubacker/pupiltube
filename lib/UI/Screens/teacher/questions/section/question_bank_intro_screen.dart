@@ -159,7 +159,7 @@ class QuizInfoItem extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  QuizInfoItem({
+  const QuizInfoItem({super.key, 
     required this.icon,
     required this.title,
     required this.subtitle,
@@ -190,6 +190,8 @@ class QuizInfoItem extends StatelessWidget {
 }
 
 class QuizInstructions extends StatelessWidget {
+  const QuizInstructions({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
