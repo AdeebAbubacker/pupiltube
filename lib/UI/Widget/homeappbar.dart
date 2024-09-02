@@ -2,11 +2,33 @@
 
 import 'package:flutter/material.dart';
 import 'package:puppil/core/constant/text_style.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({
     super.key,
   });
+
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  String studentName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadStudentName();
+  }
+
+  Future<void> _loadStudentName() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      studentName = prefs.getString('studentName') ??
+          'Guest'; // Default to 'Guest' if not set
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +37,7 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Hi, Rahul ', style: TextStyles.rubik20black54A),
+            Text('Hi, ${studentName} ', style: TextStyles.rubik20black54A),
             SizedBox(
                 width: 50,
                 height: 50,

@@ -24,6 +24,7 @@ import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_intro_
 import 'package:puppil/core/service/admin/role_servcie/get_role_service.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/service/student/assesment/assesment_service.dart';
+import 'package:puppil/core/service/student/events/events_servcie.dart';
 import 'package:puppil/core/service/teacher/assesment/assesment_service.dart';
 import 'package:puppil/core/service/teacher/course/course_servcies.dart';
 import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
@@ -38,7 +39,9 @@ import 'package:puppil/core/view_model/review_assesment/review_assesment_bloc.da
 import 'package:puppil/core/view_model/signup/signup_bloc.dart';
 import 'package:puppil/core/view_model/studentToAttend/students_to_attend_bloc.dart';
 import 'package:puppil/core/view_model/student_submission/student_submission_bloc.dart';
+import 'package:puppil/core/view_model/students_event/students_events_bloc.dart';
 import 'package:puppil/firebase_options.dart';
+import 'package:puppil/test/pppppppppppp.dart';
 import 'package:puppil/test/test_screen_2.dart';
 
 void main() async {
@@ -111,6 +114,11 @@ class MyApp extends StatelessWidget {
             authService: AuthService(FirebaseAuth.instance),
           ),
         ),
+        BlocProvider(
+          create: (context) => StudentsEventsBloc(
+            eventsService: EventsService(),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -121,7 +129,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: {
-          '/': (context) => SplashScreen(),
+          '/': (context) => TeachesDashboardScreen(),
           '/introScreen': (context) => IntroScreen(),
           '/signupRoleScreen': (context) => SignUpRolePage(),
           // '/signinRoleScreen': (context) => SigninRoleScreen(),
@@ -143,4 +151,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -1,14 +1,13 @@
-# puppil
+# PuppilTube
 
 A new Flutter project.
 
 ## Getting Started
 
-# 📚 SchoolConnect - Mobile App
+# 📚 Pupil Tube - Mobile App
 
 <div align="center">
   <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/icon/pupil.png" alt="SchoolConnect Logo" width="200"/>
-  <h1>📚 SchoolConnect - Mobile App</h1>
   <p>An intuitive app designed to enhance communication between students and teachers, streamlining education through technology.</p>
   <a href="https://github.com/yourusername/schoolconnect"><img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/animated/Data%20Error.gif" alt="GitHub Stars"></a>
   <a href="https://github.com/yourusername/schoolconnect/issues"><img src=https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/animated/Data%20Error.gif" alt="Issues"></a>
@@ -40,7 +39,7 @@ A new Flutter project.
 | **Flutter**   | Frontend framework for cross-platform UI.      |
 | **Firebase**  | Backend services including Authentication.     |
 | **Firestore** | Database for storing student and teacher data. |
-| **Node.js**   | Backend server for additional API endpoints.   |
+
 
 ## 🚀 Getting Started
 
@@ -54,6 +53,7 @@ A new Flutter project.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/schoolconnect.git
-   cd schoolconnect
+   git clone https://github.com/AdeebAbubacker/pupiltube
+   cd pupiltube
+   
    ```

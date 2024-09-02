@@ -46,15 +46,13 @@ class AuthService {
                 // Store classId in SharedPreferences
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('classId', classId);
-                await prefs.setString('name', classId);
               }
-               String? studentName = userDoc.get('classId');
+              String? studentName = userDoc.get('name');
 
-              if (classId != null && classId.isNotEmpty) {
+              if (studentName != null && studentName.isNotEmpty) {
                 // Store classId in SharedPreferences
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString('classId', classId);
-                await prefs.setString('name', classId);
+                await prefs.setString('studentName', studentName);
               }
             }
             print(role.toString());
@@ -140,6 +138,7 @@ class AuthService {
           } // Store classId in SharedPreferences
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString('classId', classId);
+          await prefs.setString('studentName', name);
           return Right(role); // Return role on success
         } else {
           // Class document does not exist

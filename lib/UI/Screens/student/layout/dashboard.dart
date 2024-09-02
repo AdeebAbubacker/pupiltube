@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
-import 'package:puppil/UI/Screens/student/feedback/feedback_screen.dart';
+import 'package:puppil/UI/Screens/student/events/events_screen.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/UI/Screens/student/home/home_screen.dart';
@@ -25,7 +25,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   static final List<Widget> _screens = [
     HomeScreen(),
     const AssesmentScreen(),
-    const StudentSubmission(),
+    const EventsSection(),
     const StudentsProfileScreen(),
   ];
 
@@ -104,7 +104,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.assessment), label: 'Assessment'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.reviews), label: 'Reviews'),
+                  icon: Icon(Icons.event_available), label: 'Events'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'Profile'),
             ],

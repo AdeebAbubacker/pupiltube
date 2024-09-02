@@ -8,7 +8,6 @@ import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/GetMyClassCourses/get_my_class_courses_bloc.dart';
 
-
 // Main screen with the video thumbnail
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,12 +48,6 @@ class HomeScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         // Navigate to the player screen when the thumbnail is clicked
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => VideoPlayer(),
-                          ),
-                        );
                         AppRouteService.navigateTovideoPlayScreen(context,
                             data: value.rolemodel.data![index]);
                       },

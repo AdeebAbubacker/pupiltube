@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,23 +10,25 @@ import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+
+
+class TeacherProfileScreen extends StatefulWidget {
+  const TeacherProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<TeacherProfileScreen> createState() => _TeacherProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
   String? selectedString;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController classController = TextEditingController();
-  final List<String> options = [
-    "d0087d35-9bdc-4d3b-af95-de9b1b910c41",
-    "ELdOiMB20ROxsHtu8R74",
-  ];
+  // final List<String> options = [
+  //   "d0087d35-9bdc-4d3b-af95-de9b1b910c41",
+  //   "ELdOiMB20ROxsHtu8R74",
+  // ];
 
   File? _selectedImage;
   String? filePath;
@@ -42,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       String? selectedFileName = basename(selectedFilePath!);
 
       if (!_isValidImageFile(selectedFileName)) {
-      print('ssssssssssssssssssssssss');
+        print('ssssssssssssssssssssssss');
         return;
       }
 
@@ -65,6 +68,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final validExtensions = ['png', 'jpg', 'jpeg'];
     final fileExtension = fileName.split('.').last.toLowerCase();
     return validExtensions.contains(fileExtension);
+  }
+
+  int? _selectedString;
+  // List of classes using the new model class
+  final List<RoleItem> RoleItems = [
+    RoleItem(displayName: "Admin", id: 1),
+    RoleItem(displayName: "Teacher", id: 2),
+    RoleItem(displayName: "Student", id: 3),
+  ];
+
+// Variable to hold the selected class
+  RoleItem? _selectedRoleItem;
+
+  List<DropdownMenuItem<RoleItem>> _addDividersAfterItems(
+      List<RoleItem> items) {
+    final List<DropdownMenuItem<RoleItem>> menuItems = [];
+    for (final RoleItem item in items) {
+      menuItems.addAll(
+        [
+          DropdownMenuItem<RoleItem>(
+            value: item,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                item.displayName, // Display the class name
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+          // If it's the last item, we will not add a Divider after it.
+          if (item != items.last)
+            const DropdownMenuItem<RoleItem>(
+              enabled: false,
+              child: Divider(),
+            ),
+        ],
+      );
+    }
+    return menuItems;
+  }
+
+  List<double> _getCustomItemsHeights() {
+    final List<double> itemsHeights = [];
+    for (int i = 0; i < (RoleItems.length * 2) - 1; i++) {
+      if (i.isEven) {
+        itemsHeights.add(40); // Height for menu items
+      }
+      // Divider indexes will be the odd indexes
+      if (i.isOdd) {
+        itemsHeights.add(4); // Height for dividers
+      }
+    }
+    return itemsHeights;
   }
 
   @override
@@ -108,6 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 30),
             TextFormField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -116,38 +175,93 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller: nameController,
             ),
             const SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: selectedString,
-              decoration: const InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-              ),
-              hint: Text(
-                'Choose an option',
-                style: TextStyles.rubik12black54Aw400,
-              ),
-              items: options.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value == "d0087d35-9bdc-4d3b-af95-de9b1b910c41"
-                        ? "Class 4"
-                        : "Class 5",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+            // DropdownButtonFormField<String>(
+            //   value: selectedString,
+            //   decoration: const InputDecoration(
+            //     enabledBorder: UnderlineInputBorder(
+            //       borderSide: BorderSide(color: Colors.grey),
+            //     ),
+            //     focusedBorder: UnderlineInputBorder(
+            //       borderSide: BorderSide(color: Colors.grey),
+            //     ),
+            //   ),
+            //   hint: Text(
+            //     'Choose an option',
+            //     style: TextStyles.rubik12black54Aw400,
+            //   ),
+            //   items: options.map((String value) {
+            //     return DropdownMenuItem<String>(
+            //       value: value,
+            //       child: Text(
+            //         value == "d0087d35-9bdc-4d3b-af95-de9b1b910c41"
+            //             ? "Class 4"
+            //             : "Class 5",
+            //         overflow: TextOverflow.ellipsis,
+            //         maxLines: 1,
+            //       ),
+            //     );
+            //   }).toList(),
+            //   onChanged: (newValue) {
+            //     setState(() {
+            //       selectedString = newValue;
+            //     });
+            //   },
+            // ),
+
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 231, 231, 231),
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
                   ),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  selectedString = newValue;
-                });
-              },
+                ],
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<RoleItem>(
+                  isExpanded: true,
+                  hint: Text(
+                    'Select Your Class',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).hintColor,
+                    ),
+                  ),
+                  items: _addDividersAfterItems(
+                      RoleItems), // Use the updated method
+                  value: _selectedRoleItem,
+                  onChanged: (RoleItem? value) {
+                    setState(() {
+                      _selectedRoleItem = value; // Update selected class item
+                      _selectedString =
+                          value?.id; // Use the selected ID for processing
+                    });
+                  },
+                  buttonStyleData: const ButtonStyleData(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 40,
+                    width: 140,
+                  ),
+                  dropdownStyleData: const DropdownStyleData(
+                    maxHeight: 200,
+                  ),
+                  menuItemStyleData: MenuItemStyleData(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    customHeights: _getCustomItemsHeights(),
+                  ),
+                  iconStyleData: const IconStyleData(
+                    openMenuIcon: Icon(Icons.arrow_drop_up),
+                  ),
+                ),
+              ),
             ),
+
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -175,4 +289,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+}
+
+class RoleItem {
+  final String displayName;
+  final int id;
+
+  RoleItem({required this.displayName, required this.id});
 }

@@ -21,7 +21,7 @@ class _TeachesDashboardScreenState extends State<TeachesDashboardScreen> {
     HomeScreen(),
     const AssesmentScreen(),
     const QuestionBankManagementScreen(),
-    const ProfileScreen(),
+    const TeacherProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
