@@ -1,67 +1,88 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:puppil/core/helper/token/get_uid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   AuthService(this._firebaseAuth);
   final FirebaseAuth _firebaseAuth;
 
-Future<Either<String, int?>> login({
-  required String email,
-  required String password,
-}) async {
-  try {
-    // Sign in with email and password
-    UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  Future<Either<String, int?>> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      // Sign in with email and password
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    // Check if user is authenticated
-    if (userCredential.user != null) {
-      // Get the user's ID
-      String userId = userCredential.user!.uid;
+      // Check if user is authenticated
+      if (userCredential.user != null) {
+        // Get the user's ID
+        String userId = userCredential.user!.uid;
 
-      // Check if the user document exists in the 'Users' collection
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(userId)
-          .get();
+        // Check if the user document exists in the 'Users' collection
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(userId)
+            .get();
 
-      if (userDoc.exists) {
-        // Assuming 'role' field is stored as an int
-        int role = userDoc.get('role');
+        if (userDoc.exists) {
+          // Assuming 'role' field is stored as an int
+          int role = userDoc.get('role');
 
-        // Validate role and return it
-        if (role == 1 || role == 2 || role == 3) {
-          print(role.toString());
-          return Right(role);
+          // Validate role and return it
+          if (role == 1 || role == 2 || role == 3) {
+            if (role == 2 || role == 3) {
+              // Retrieve classId from the user's data if it's stored there
+              String? classId = userDoc.get('classId');
+
+              if (classId != null && classId.isNotEmpty) {
+                // Store classId in SharedPreferences
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('classId', classId);
+                await prefs.setString('name', classId);
+              }
+               String? studentName = userDoc.get('classId');
+
+              if (classId != null && classId.isNotEmpty) {
+                // Store classId in SharedPreferences
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('classId', classId);
+                await prefs.setString('name', classId);
+              }
+            }
+            print(role.toString());
+            return Right(role);
+          } else {
+            print('Invalid role');
+            return const Left('Invalid role');
+          }
         } else {
-          print('Invalid role');
-          return const Left('Invalid role');
+          print('User document does not exist in Users collection');
+          return const Left('User document does not exist');
         }
       } else {
-        print('User document does not exist in Users collection');
-        return const Left('User document does not exist');
+        print('User not authenticated');
+        return const Left('User not authenticated');
       }
-    } else {
-      print('User not authenticated');
-      return const Left('User not authenticated');
+    } catch (e) {
+      print('Error during login: ${e.toString()}');
+      return Left(e.toString());
     }
-  } catch (e) {
-    print('Error during login: ${e.toString()}');
-    return Left(e.toString());
   }
-}
 
-
-  Future<void> signUpAndSaveUserData({
+  Future<Either<int, int?>> signUpAndSaveUserData({
     required String name,
     required String email,
     required String password,
-    String? classId, // New parameter to specify the class ID
-    required int role, // New parameter to specify the class ID
+    String? classId,
+    required int role,
   }) async {
     try {
       // Sign up with Firebase Auth
@@ -79,11 +100,16 @@ Future<Either<String, int?>> login({
         'name': name,
         'email': email,
         'role': role,
+        'classId': classId,
       });
 
-      // Update the class document based on the role
+      // Handle class updates based on role
       if (role == 2 || role == 3) {
-        // Assuming role 2 is for teachers and 3 is for students
+        if (classId == null) {
+          // If classId is not provided, return an error
+          return Left(-1); // Error code for missing classId
+        }
+
         // Fetch the current class document
         DocumentSnapshot classDoc =
             await _db.collection('classes').doc(classId).get();
@@ -111,14 +137,25 @@ Future<Either<String, int?>> login({
             await _db.collection('classes').doc(classId).update({
               'students': students,
             });
-          }
+          } // Store classId in SharedPreferences
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('classId', classId);
+          return Right(role); // Return role on success
         } else {
-          print('Class document does not exist.');
+          // Class document does not exist
+          return Left(1); // Error code for class not found
         }
+      } else if (role == 1) {
+        // Handle admin role separately
+        return Right(role); // Return role on success
       }
+
+      // Return an error if role is not recognized
+      return Left(2); // Error code for unrecognized role
     } catch (e) {
-      print('Error during sign up: $e');
-      // Handle errors (e.g., logging, user notification)
+      // Handle errors
+      print('Error occurred: ${e.toString()}');
+      return Left(3); // Error code for general exceptions
     }
   }
 
@@ -156,35 +193,30 @@ Future<Either<String, int?>> login({
       print('User document deleted from Firestore.');
 
       // If classId is available, update the class document
-      if (classId != null) {
-        // Fetch the class document
-        DocumentSnapshot classDoc =
-            await _db.collection('classes').doc(classId).get();
+      // Fetch the class document
+      DocumentSnapshot classDoc =
+          await _db.collection('classes').doc(classId).get();
 
-        if (classDoc.exists) {
-          // Extract the class data and get the students list
-          final Map<String, dynamic>? classData =
-              classDoc.data() as Map<String, dynamic>?;
-          List<dynamic> students = classData?['students'] ?? [];
+      if (classDoc.exists) {
+        // Extract the class data and get the students list
+        final Map<String, dynamic>? classData =
+            classDoc.data() as Map<String, dynamic>?;
+        List<dynamic> students = classData?['students'] ?? [];
 
-          // Remove the user from the students array if present
-          if (students.contains(uid)) {
-            students.remove(uid);
+        // Remove the user from the students array if present
+        if (students.contains(uid)) {
+          students.remove(uid);
 
-            // Update the class document with the modified students array
-            await _db.collection('classes').doc(classId).update({
-              'students': students,
-            });
-            print(
-                'User removed from the students array in the class document.');
-          } else {
-            print('User is not found in the students array.');
-          }
+          // Update the class document with the modified students array
+          await _db.collection('classes').doc(classId).update({
+            'students': students,
+          });
+          print('User removed from the students array in the class document.');
         } else {
-          print('Class document does not exist.');
+          print('User is not found in the students array.');
         }
       } else {
-        print('No classId found for this user or it was not provided.');
+        print('Class document does not exist.');
       }
     } catch (e) {
       print('Error during user deletion: $e');
@@ -192,7 +224,40 @@ Future<Either<String, int?>> login({
     }
   }
 
+  Future<void> updateProfile({
+    String? newName,
+    int? newRole,
+    String? newImgUrl,
+  }) async {
+    try {
+      final uid = await getUserUID();
+      User? user = _firebaseAuth.currentUser;
 
+      // Create a map to store the fields that need to be updated
+      final Map<String, dynamic> updateData = {};
+
+      if (newName != null) {
+        updateData['name'] = newName;
+      }
+      if (newRole != null) {
+        updateData['role'] = newRole;
+      }
+      if (newImgUrl != null) {
+        updateData['imgUrl'] = newImgUrl;
+      }
+
+      if (updateData.isNotEmpty) {
+        // Update user profile in Firestore
+        await _db.collection('Users').doc(uid).update(updateData);
+        print('Profile updated successfully.');
+      } else {
+        print('No fields to update.');
+      }
+    } catch (e) {
+      // Handle the exception, like showing an error message to the user
+      print('Error updating profile: $e');
+    }
+  }
 }
 
 class UpdateMyAssesment {

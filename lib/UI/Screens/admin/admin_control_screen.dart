@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/constant/text_style.dart';
-import 'package:puppil/core/service/admin/role_servcie/get_role_service.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/view_model/GetUserDataByRoles/get_user_data_by_roles_bloc.dart';
 
@@ -123,18 +122,18 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                               itemCount: value.rolemodel.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                print("${value.rolemodel[index].uid}");
+                                print(value.rolemodel[index].uid);
                                 return UserDataWidget(
                                   id: "${index + 1}",
-                                  name: "${value.rolemodel[index].name}",
+                                  name: value.rolemodel[index].name,
                                   className:
-                                      "${value.rolemodel[index].classId}",
+                                      value.rolemodel[index].classId,
                                   onPressed: () async {
-                                    print("${value.rolemodel[index].uid}");
+                                    print(value.rolemodel[index].uid);
                                     await AuthService(FirebaseAuth.instance)
                                         .deleteUser(
-                                            "${value.rolemodel[index].uid}",
-                                            "${value.rolemodel[index].classId}",);
+                                            value.rolemodel[index].uid,
+                                            value.rolemodel[index].classId,);
                                   },
                                 );
                               },
@@ -157,12 +156,12 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
   }
 
   void _showQuestionBottomSheet(BuildContext context) {
-    String? _selectedString;
+    String? selectedString;
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController classController = TextEditingController();
-    final List<String> _options = [
+    final List<String> options = [
       "d0087d35-9bdc-4d3b-af95-de9b1b910c41",
       "ELdOiMB20ROxsHtu8R74",
     ];
@@ -208,7 +207,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Name',
                             ),
@@ -216,7 +215,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Email',
                             ),
@@ -224,7 +223,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                           ),
                           const SizedBox(height: 20),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Password',
                             ),
@@ -232,7 +231,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                           ),
                           const SizedBox(height: 20),
                           DropdownButtonFormField<String>(
-                            value: _selectedString,
+                            value: selectedString,
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
@@ -245,7 +244,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                               'Choose an option',
                               style: TextStyles.rubik12black54Aw400,
                             ),
-                            items: _options.map((String value) {
+                            items: options.map((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(
@@ -260,7 +259,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                             }).toList(),
                             onChanged: (newValue) {
                               setState(() {
-                                _selectedString = newValue;
+                                selectedString = newValue;
                               });
                             },
                           ),
@@ -273,7 +272,7 @@ class _AdminControlScreenState extends State<AdminControlScreen> {
                                   name: nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  classId: _selectedString.toString(),
+                                  classId: selectedString.toString(),
                                   role: 3,
                                 );
                                 WidgetsBinding.instance

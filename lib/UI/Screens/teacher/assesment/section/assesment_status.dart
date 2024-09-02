@@ -4,8 +4,25 @@ import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/view_model/studentToAttend/students_to_attend_bloc.dart';
 import 'package:puppil/core/view_model/student_submission/student_submission_bloc.dart';
 
-class AssesmentStatus extends StatelessWidget {
+class AssesmentStatus extends StatefulWidget {
   const AssesmentStatus({super.key});
+
+  @override
+  State<AssesmentStatus> createState() => _AssesmentStatusState();
+}
+
+class _AssesmentStatusState extends State<AssesmentStatus> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<StudentSubmissionBloc>(context)
+          .add(const StudentSubmissionEvent.fetchAllSubmissionByAssesmentId());
+      BlocProvider.of<StudentsToAttendBloc>(context)
+          .add(const StudentsToAttendEvent.fetchStudentToSubmitEvent());
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +50,16 @@ class AssesmentStatus extends StatelessWidget {
                     fetchsubmissionByAssementId: (value) {
                       return ListView.builder(
                         shrinkWrap: true,
+                        padding: EdgeInsets.all(0),
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: value.assesment.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 245, 245, 247),
+                                    color: const Color.fromARGB(
+                                        255, 245, 245, 247),
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(
@@ -52,8 +72,8 @@ class AssesmentStatus extends StatelessWidget {
                                             2), // Position of the shadow (x, y)
                                       ),
                                     ],
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(9))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(9))),
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Row(
@@ -107,23 +127,10 @@ class AssesmentStatus extends StatelessWidget {
                 },
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  BlocProvider.of<StudentSubmissionBloc>(context).add(
-                      const StudentSubmissionEvent
-                          .fetchAllSubmissionByAssesmentId());
-                  // SubmissionService().checkStudentSubmissions(
-                  //     assessmentId: "4d2f8fe7-13f7-4ab9-b8d9-09645a727e2a");
-                },
-                child: const Text("Student Submitted")),
-            ElevatedButton(
-                onPressed: () {
-                  BlocProvider.of<StudentsToAttendBloc>(context).add(
-                      const StudentsToAttendEvent.fetchStudentToSubmitEvent());
-                  // SubmissionService().checkStudentSubmissions(
-                  //     assessmentId: "4d2f8fe7-13f7-4ab9-b8d9-09645a727e2a");
-                },
-                child: const Text("Student Not Attended")),
+            Text(
+              "Students Attended",
+              style: TextStyles.rubik16grey367,
+            ),
             Center(
               child: BlocBuilder<StudentsToAttendBloc, StudentsToAttendState>(
                 builder: (context, state) {
@@ -136,6 +143,8 @@ class AssesmentStatus extends StatelessWidget {
                     },
                     fetchStudentsSubmit: (value) {
                       return ListView.builder(
+                        padding: EdgeInsets.all(0),
+                        physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: value.studentTosubmit.length,
                         itemBuilder: (context, index) {
@@ -143,7 +152,8 @@ class AssesmentStatus extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 245, 245, 247),
+                                    color: const Color.fromARGB(
+                                        255, 245, 245, 247),
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(
@@ -156,8 +166,8 @@ class AssesmentStatus extends StatelessWidget {
                                             2), // Position of the shadow (x, y)
                                       ),
                                     ],
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(9))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(9))),
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Row(

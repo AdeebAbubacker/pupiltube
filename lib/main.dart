@@ -5,17 +5,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/admin/admin_control_screen.dart';
 import 'package:puppil/UI/Screens/admin/loyout_screen.dart';
 import 'package:puppil/UI/Screens/auth/intro_screen.dart';
 import 'package:puppil/UI/Screens/auth/signin_screen.dart';
 import 'package:puppil/UI/Screens/auth/signup_role_screen.dart';
 import 'package:puppil/UI/Screens/auth/signup_screen.dart';
+import 'package:puppil/UI/Screens/auth/splash_screen.dart';
 import 'package:puppil/UI/Screens/student/layout/dashboard.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_creation_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_doyouknow_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_intro_screen.dart';
+import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_review_screen.dart';
 import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_status.dart';
+import 'package:puppil/UI/Screens/teacher/home/widget/video_player.dart';
 import 'package:puppil/UI/Screens/teacher/layout/dashboard.dart';
 import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_creation_screen.dart';
 import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_intro_screen.dart';
@@ -23,12 +25,17 @@ import 'package:puppil/core/service/admin/role_servcie/get_role_service.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/service/student/assesment/assesment_service.dart';
 import 'package:puppil/core/service/teacher/assesment/assesment_service.dart';
+import 'package:puppil/core/service/teacher/course/course_servcies.dart';
 import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
 import 'package:puppil/core/service/teacher/submission/submission_service.dart';
+import 'package:puppil/core/view_model/GetMyClassCourses/get_my_class_courses_bloc.dart';
 import 'package:puppil/core/view_model/GetUserDataByRoles/get_user_data_by_roles_bloc.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
+import 'package:puppil/core/view_model/fetch_assesment_by_colleages/fetch_assesment_by_colleages_bloc.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
+import 'package:puppil/core/view_model/review_assesment/review_assesment_bloc.dart';
+import 'package:puppil/core/view_model/signup/signup_bloc.dart';
 import 'package:puppil/core/view_model/studentToAttend/students_to_attend_bloc.dart';
 import 'package:puppil/core/view_model/student_submission/student_submission_bloc.dart';
 import 'package:puppil/firebase_options.dart';
@@ -84,6 +91,26 @@ class MyApp extends StatelessWidget {
             getRoleService: GetRoleService(),
           ),
         ),
+        BlocProvider(
+          create: (context) => GetMyClassCoursesBloc(
+            courseServcies: CourseServcies(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => FetchAssesmentByColleagesBloc(
+            assesmentService: AssesmentService(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => ReviewAssesmentBloc(
+            assesmentService: AssesmentService(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SignupBloc(
+            authService: AuthService(FirebaseAuth.instance),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,7 +121,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: {
-          '/': (context) => TeachesDashboardScreen(),
+          '/': (context) => SplashScreen(),
           '/introScreen': (context) => IntroScreen(),
           '/signupRoleScreen': (context) => SignUpRolePage(),
           // '/signinRoleScreen': (context) => SigninRoleScreen(),
@@ -110,8 +137,10 @@ class MyApp extends StatelessWidget {
           '/teacherDashboard': (context) => TeachesDashboardScreen(),
           '/adminDashboard': (context) => AdminDashboardScreen(),
           '/assesmentStatus': (context) => AssesmentStatus(),
+          '/videoPlayScreen': (context) => VideoPlayer(),
         },
       ),
     );
   }
 }
+

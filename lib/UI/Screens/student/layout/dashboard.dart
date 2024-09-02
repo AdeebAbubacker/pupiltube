@@ -6,9 +6,12 @@ import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
 import 'package:puppil/UI/Screens/student/feedback/feedback_screen.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puppil/UI/Screens/student/home/home_screen.dart';
+import 'package:puppil/UI/Screens/student/profile/profile_screen.dart';
+import 'package:puppil/UI/Screens/teacher/profile/profile_screen.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
-import 'package:puppil/test/test_screen.dart';
+import 'package:puppil/UI/Screens/student/assesment/section/test_screen.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({super.key});
@@ -20,11 +23,10 @@ class StudentDashboardScreen extends StatefulWidget {
 class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   int _selectedIndex = 1;
   static final List<Widget> _screens = [
-    DEeeeeeeeeeeeeeeeey(),
+    HomeScreen(),
     const AssesmentScreen(),
     const StudentSubmission(),
-    const Screen4(),
-    const Screen5(),
+    const StudentsProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -43,8 +45,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
           // Allow exit
         } else if (_selectedIndex == 1 ||
             _selectedIndex == 2 ||
-            _selectedIndex == 3 ||
-            _selectedIndex == 4) {
+            _selectedIndex == 3) {
           setState(() {
             _selectedIndex = 0;
           });
@@ -68,8 +69,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                         () {
                           if (_selectedIndex == 1 ||
                               _selectedIndex == 2 ||
-                              _selectedIndex == 3 ||
-                              _selectedIndex == 4) {
+                              _selectedIndex == 3) {
                             _selectedIndex = 0;
                           }
                         },
@@ -106,8 +106,6 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.reviews), label: 'Reviews'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.feedback), label: 'Feedback'),
-              BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'Profile'),
             ],
             currentIndex: _selectedIndex,
@@ -120,47 +118,19 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   }
 }
 
-class Screen4 extends StatelessWidget {
-  const Screen4({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text("Screen 4 ")),
-    );
-  }
-}
-
 class Screen5 extends StatelessWidget {
   const Screen5({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
-        state.maybeMap(
-            logoutSuccess: (value) {
-              AppRouteService.navigateToIntroScreenCleared(context);
+    return Container(
+      child: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              BlocProvider.of<LoginBloc>(context)
+                  .add(const LoginEvent.logoutRequested());
             },
-            logoutFailure: (value) {
-              print('failure');
-            },
-            orElse: () {});
-      },
-      child: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Text("Screen 5 "),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  BlocProvider.of<LoginBloc>(context)
-                      .add(LoginEvent.logoutRequested());
-                },
-                child: Text("logout"))
-          ],
-        ),
+            child: const Text("logout")),
       ),
     );
   }

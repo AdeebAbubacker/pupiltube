@@ -35,7 +35,30 @@ class QuestionBankBloc extends Bloc<QuestionBankEvent, QuestionBankState> {
         emit(QuestionBankState.error(error: 'An error occurred: $e'));
       }
     });
-  
-  
+
+    on<_FetchQuestionBankByIdEvent>((event, emit) async {
+      emit(const QuestionBankState.loading());
+
+      try {
+        print('Bloc called');
+        final result = await questionBankService.fetchQuestionBankById(questionBankId: event.questionBankId);
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('Internet called');
+            emit(const QuestionBankState.noInternet());
+          } else {
+            print('Error called');
+            emit(QuestionBankState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('Success called');
+          emit(QuestionBankState.fetchQuestionBankbyId(questionBank: success));
+        });
+      } catch (e) {
+        print('Error called');
+        emit(QuestionBankState.error(error: 'An error occurred: $e'));
+      }
+    });
   }
 }

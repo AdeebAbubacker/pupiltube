@@ -12,18 +12,16 @@ class StudentSubmissionBloc
     extends Bloc<StudentSubmissionEvent, StudentSubmissionState> {
   final AssesmentService assesmentService;
 
-
   StudentSubmissionBloc({
     required this.assesmentService,
-   
   }) : super(const _Initial()) {
     on<_FetchAllSubmissionByAssesmentId>((event, emit) async {
       emit(const StudentSubmissionState.loading());
 
       try {
         print('Bloc called');
-        final result =
-            await assesmentService.getListOfSubmissionByAssessmentId(uid: "ss");
+        final result = await assesmentService.getListOfSubmissionByAssessmentId(
+            uid: "1031e45f-e93f-44da-81c4-93306bd66f53");
 
         await result.fold((failure) async {
           if (failure == 0) {
@@ -44,5 +42,7 @@ class StudentSubmissionBloc
         emit(StudentSubmissionState.error(error: 'An error occurred: $e'));
       }
     });
-}
+  
+  
+  }
 }

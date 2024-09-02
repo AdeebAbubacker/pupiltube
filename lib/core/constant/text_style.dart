@@ -36,6 +36,11 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: const Color(0xFF34354A),
   );
+    static final TextStyle rubik13greyDA6 = rubik.copyWith(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xFF9A9DA6),
+  );
    static final TextStyle rubik20black54Aw600 = rubik.copyWith(
     fontSize: 20,
     fontWeight: FontWeight.w600,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puppil/core/helper/connection/connectivity_checker.dart';
+import 'package:puppil/core/helper/token/get_uid.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -14,11 +15,11 @@ class AssesmentStudentService {
       if (!hasInternet) {
         return const Left(0);
       }
-
+      final res = await getUserUID();
       // Query to fetch the class document where the student array contains the provided uid
       final snapshot = await _db
           .collection('classes')
-          .where('students', arrayContains: "1YBTaDudA2MWwGrPlwpy8EYip4m1")
+          .where('students', arrayContains: res)
           .get();
 
       if (snapshot.docs.isNotEmpty) {
@@ -214,6 +215,90 @@ class AssesmentStudentService {
     } catch (e) {
       print('Error: ${e.toString()}');
       return Left('Failed to check overdue assessments: ${e.toString()}');
+    }
+  }
+
+  Future<Either<String, List<AssessmentModel>>> getCompletedAssessments({
+    required String uid,
+  }) async {
+    try {
+      // Check for internet connectivity
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        print("No internet connection");
+        return const Left('No internet connection');
+      }
+
+      // Step 1: Check if the user is part of any class
+      QuerySnapshot classesSnapshot = await _db
+          .collection('classes')
+          .where('students', arrayContains: uid)
+          .get();
+
+      if (classesSnapshot.docs.isNotEmpty) {
+        // User is found in a class
+        DocumentSnapshot classDoc = classesSnapshot.docs.first;
+        String classId = classDoc.id; // Get the class ID
+        print('Class ID: $classId');
+
+        // Step 2: Check if this class has any assessments
+        QuerySnapshot assessmentsSnapshot = await _db
+            .collection('assessments')
+            .where('classId', isEqualTo: classId)
+            .get();
+
+        if (assessmentsSnapshot.docs.isNotEmpty) {
+          // Step 3: Check each assessment to see if it's completed
+          List<AssessmentModel> completedAssessments = [];
+          final currentTime = Timestamp.now();
+
+          for (var assessmentDoc in assessmentsSnapshot.docs) {
+            String assessmentId = assessmentDoc.id;
+
+            // Convert Firestore document to AssessmentModel
+            AssessmentModel assessment = AssessmentModel.fromMap(
+                assessmentDoc.data() as Map<String, dynamic>);
+
+            // Safely check if endTime exists and is past the current time
+            final assessmentEndTime = assessment.timeSlot?.endTime;
+
+            if (assessmentEndTime != null &&
+                assessmentEndTime.compareTo(currentTime) <= 0) {
+              // Assessment is overdue
+
+              // Check if this assessment has a corresponding submission by the user
+              QuerySnapshot submissionSnapshot = await _db
+                  .collection('studentSubmissions')
+                  .where('assessmentId', isEqualTo: assessmentId)
+                  .where('studentId', isEqualTo: uid)
+                  .get();
+
+              // If a submission is found, the assessment is completed
+              if (submissionSnapshot.docs.isNotEmpty) {
+                completedAssessments.add(assessment);
+              }
+            }
+          }
+
+          if (completedAssessments.isNotEmpty) {
+            // Return the list of completed assessments
+            print('Completed assessments: ${completedAssessments.length}');
+            return Right(completedAssessments);
+          } else {
+            print("No completed assessments found.");
+            return const Left('No completed assessments found.');
+          }
+        } else {
+          print("No assessments found for the class.");
+          return const Left('No assessments found for the class.');
+        }
+      } else {
+        print("User is not part of any class.");
+        return const Left('User is not part of any class.');
+      }
+    } catch (e) {
+      print('Error: ${e.toString()}');
+      return Left('Failed to check completed assessments: ${e.toString()}');
     }
   }
 }

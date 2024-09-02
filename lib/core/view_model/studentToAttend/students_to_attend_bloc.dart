@@ -8,15 +8,16 @@ part 'students_to_attend_bloc.freezed.dart';
 
 class StudentsToAttendBloc
     extends Bloc<StudentsToAttendEvent, StudentsToAttendState> {
-        final SubmissionService submissionService;
-  StudentsToAttendBloc({required this.submissionService}) : super(const _Initial()) {
-     on<_FetchStudentToSubmitEvent>((event, emit) async {
+  final SubmissionService submissionService;
+  StudentsToAttendBloc({required this.submissionService})
+      : super(const _Initial()) {
+    on<_FetchStudentToSubmitEvent>((event, emit) async {
       emit(const StudentsToAttendState.loading());
 
       try {
         print('Bloc called');
         final result = await submissionService.checkStudentSubmissions(
-            assessmentId: "4d2f8fe7-13f7-4ab9-b8d9-09645a727e2a");
+            assessmentId: "1031e45f-e93f-44da-81c4-93306bd66f53");
 
         await result.fold((failure) async {
           if (failure == 0) {

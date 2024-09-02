@@ -21,8 +21,7 @@ class _TeachesDashboardScreenState extends State<TeachesDashboardScreen> {
     HomeScreen(),
     const AssesmentScreen(),
     const QuestionBankManagementScreen(),
-    const AnalatycsScreen(),
-    const Screen5(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -41,8 +40,7 @@ class _TeachesDashboardScreenState extends State<TeachesDashboardScreen> {
           // Allow exit
         } else if (_selectedIndex == 1 ||
             _selectedIndex == 2 ||
-            _selectedIndex == 3 ||
-            _selectedIndex == 4) {
+            _selectedIndex == 3) {
           setState(() {
             _selectedIndex = 0;
           });
@@ -66,8 +64,7 @@ class _TeachesDashboardScreenState extends State<TeachesDashboardScreen> {
                         () {
                           if (_selectedIndex == 1 ||
                               _selectedIndex == 2 ||
-                              _selectedIndex == 3 ||
-                              _selectedIndex == 4) {
+                              _selectedIndex == 3) {
                             _selectedIndex = 0;
                           }
                         },
@@ -103,8 +100,6 @@ class _TeachesDashboardScreenState extends State<TeachesDashboardScreen> {
                   icon: Icon(Icons.assessment), label: 'Assessment'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.reviews), label: 'Questions'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.feedback), label: 'Analatycs'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'Profile'),
             ],

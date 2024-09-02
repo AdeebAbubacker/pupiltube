@@ -9,6 +9,8 @@ class QuestionBankState with _$QuestionBankState {
       {required QuestionBank questionBank}) = _CreatedQuestionBank;
   const factory QuestionBankState.fetchAllQuestionBank(
       {required List<QuestionBank> assesment}) = _FetchAllQuestionBank;
+  const factory QuestionBankState.fetchQuestionBankbyId(
+      {required QuestionBank questionBank}) = _FetchQuestionBankbyId;
   const factory QuestionBankState.error({required String error}) =
       _QuestionBankFailure;
 }

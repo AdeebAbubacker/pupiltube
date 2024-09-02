@@ -7,7 +7,11 @@ import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 
 class AssesmentIntroScreen extends StatelessWidget {
-  AssesmentIntroScreen({super.key});
+  final String? someArgument;
+  AssesmentIntroScreen({
+    super.key,
+     this.someArgument,
+  });
   TextEditingController titleController = TextEditingController();
   TextEditingController linktocourseController = TextEditingController();
   TextEditingController timelimitController = TextEditingController();

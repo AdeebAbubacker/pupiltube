@@ -5,8 +5,10 @@ import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 
 class AssesmentDoyouknowScreen extends StatelessWidget {
+  final String? someArgument;
   AssesmentDoyouknowScreen({
     super.key,
+    this.someArgument,
   });
   TextEditingController titlecontroller = TextEditingController();
   TextEditingController descriptioncontroller = TextEditingController();
@@ -98,7 +100,8 @@ class AssesmentDoyouknowScreen extends StatelessWidget {
                               child: ElevatedButton(
                                   onPressed: () async {
                                     AppRouteService.navigateToassesmentIntro(
-                                        context);
+                                        context,
+                                        someArgument: 's');
                                   },
                                   child: Text("Continue")),
                             )

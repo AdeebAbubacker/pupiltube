@@ -20,18 +20,21 @@ mixin _$QuestionBankEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() fetchAllQuestionBank,
+    required TResult Function(String questionBankId) fetchQuestionBankById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? fetchAllQuestionBank,
+    TResult? Function(String questionBankId)? fetchQuestionBankById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchAllQuestionBank,
+    TResult Function(String questionBankId)? fetchQuestionBankById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +43,22 @@ mixin _$QuestionBankEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_FetchAllQuestionBankEvent value)
         fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankByIdEvent value)
+        fetchQuestionBankById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +122,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() fetchAllQuestionBank,
+    required TResult Function(String questionBankId) fetchQuestionBankById,
   }) {
     return started();
   }
@@ -124,6 +132,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? fetchAllQuestionBank,
+    TResult? Function(String questionBankId)? fetchQuestionBankById,
   }) {
     return started?.call();
   }
@@ -133,6 +142,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchAllQuestionBank,
+    TResult Function(String questionBankId)? fetchQuestionBankById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -147,6 +157,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_FetchAllQuestionBankEvent value)
         fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankByIdEvent value)
+        fetchQuestionBankById,
   }) {
     return started(this);
   }
@@ -156,6 +168,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
   }) {
     return started?.call(this);
   }
@@ -165,6 +178,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -222,6 +236,7 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() fetchAllQuestionBank,
+    required TResult Function(String questionBankId) fetchQuestionBankById,
   }) {
     return fetchAllQuestionBank();
   }
@@ -231,6 +246,7 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? fetchAllQuestionBank,
+    TResult? Function(String questionBankId)? fetchQuestionBankById,
   }) {
     return fetchAllQuestionBank?.call();
   }
@@ -240,6 +256,7 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? fetchAllQuestionBank,
+    TResult Function(String questionBankId)? fetchQuestionBankById,
     required TResult orElse(),
   }) {
     if (fetchAllQuestionBank != null) {
@@ -254,6 +271,8 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_FetchAllQuestionBankEvent value)
         fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankByIdEvent value)
+        fetchQuestionBankById,
   }) {
     return fetchAllQuestionBank(this);
   }
@@ -263,6 +282,7 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
   }) {
     return fetchAllQuestionBank?.call(this);
   }
@@ -272,6 +292,7 @@ class _$FetchAllQuestionBankEventImpl implements _FetchAllQuestionBankEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
     required TResult orElse(),
   }) {
     if (fetchAllQuestionBank != null) {
@@ -286,6 +307,154 @@ abstract class _FetchAllQuestionBankEvent implements QuestionBankEvent {
 }
 
 /// @nodoc
+abstract class _$$FetchQuestionBankByIdEventImplCopyWith<$Res> {
+  factory _$$FetchQuestionBankByIdEventImplCopyWith(
+          _$FetchQuestionBankByIdEventImpl value,
+          $Res Function(_$FetchQuestionBankByIdEventImpl) then) =
+      __$$FetchQuestionBankByIdEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String questionBankId});
+}
+
+/// @nodoc
+class __$$FetchQuestionBankByIdEventImplCopyWithImpl<$Res>
+    extends _$QuestionBankEventCopyWithImpl<$Res,
+        _$FetchQuestionBankByIdEventImpl>
+    implements _$$FetchQuestionBankByIdEventImplCopyWith<$Res> {
+  __$$FetchQuestionBankByIdEventImplCopyWithImpl(
+      _$FetchQuestionBankByIdEventImpl _value,
+      $Res Function(_$FetchQuestionBankByIdEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionBankId = null,
+  }) {
+    return _then(_$FetchQuestionBankByIdEventImpl(
+      questionBankId: null == questionBankId
+          ? _value.questionBankId
+          : questionBankId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchQuestionBankByIdEventImpl implements _FetchQuestionBankByIdEvent {
+  const _$FetchQuestionBankByIdEventImpl({required this.questionBankId});
+
+  @override
+  final String questionBankId;
+
+  @override
+  String toString() {
+    return 'QuestionBankEvent.fetchQuestionBankById(questionBankId: $questionBankId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchQuestionBankByIdEventImpl &&
+            (identical(other.questionBankId, questionBankId) ||
+                other.questionBankId == questionBankId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, questionBankId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchQuestionBankByIdEventImplCopyWith<_$FetchQuestionBankByIdEventImpl>
+      get copyWith => __$$FetchQuestionBankByIdEventImplCopyWithImpl<
+          _$FetchQuestionBankByIdEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() fetchAllQuestionBank,
+    required TResult Function(String questionBankId) fetchQuestionBankById,
+  }) {
+    return fetchQuestionBankById(questionBankId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? fetchAllQuestionBank,
+    TResult? Function(String questionBankId)? fetchQuestionBankById,
+  }) {
+    return fetchQuestionBankById?.call(questionBankId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? fetchAllQuestionBank,
+    TResult Function(String questionBankId)? fetchQuestionBankById,
+    required TResult orElse(),
+  }) {
+    if (fetchQuestionBankById != null) {
+      return fetchQuestionBankById(questionBankId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_FetchAllQuestionBankEvent value)
+        fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankByIdEvent value)
+        fetchQuestionBankById,
+  }) {
+    return fetchQuestionBankById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
+  }) {
+    return fetchQuestionBankById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_FetchAllQuestionBankEvent value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankByIdEvent value)? fetchQuestionBankById,
+    required TResult orElse(),
+  }) {
+    if (fetchQuestionBankById != null) {
+      return fetchQuestionBankById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchQuestionBankByIdEvent implements QuestionBankEvent {
+  const factory _FetchQuestionBankByIdEvent(
+          {required final String questionBankId}) =
+      _$FetchQuestionBankByIdEventImpl;
+
+  String get questionBankId;
+  @JsonKey(ignore: true)
+  _$$FetchQuestionBankByIdEventImplCopyWith<_$FetchQuestionBankByIdEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$QuestionBankState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -295,6 +464,7 @@ mixin _$QuestionBankState {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -305,6 +475,7 @@ mixin _$QuestionBankState {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -315,6 +486,7 @@ mixin _$QuestionBankState {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -326,6 +498,8 @@ mixin _$QuestionBankState {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -336,6 +510,7 @@ mixin _$QuestionBankState {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -346,6 +521,7 @@ mixin _$QuestionBankState {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) =>
@@ -414,6 +590,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -427,6 +604,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return initial?.call();
@@ -440,6 +618,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -457,6 +636,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return initial(this);
@@ -470,6 +651,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return initial?.call(this);
@@ -483,6 +665,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {
@@ -541,6 +724,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -554,6 +738,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return loading?.call();
@@ -567,6 +752,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -584,6 +770,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return loading(this);
@@ -597,6 +785,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return loading?.call(this);
@@ -610,6 +799,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {
@@ -668,6 +858,7 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return noInternet();
@@ -681,6 +872,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return noInternet?.call();
@@ -694,6 +886,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -711,6 +904,8 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return noInternet(this);
@@ -724,6 +919,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return noInternet?.call(this);
@@ -737,6 +933,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {
@@ -823,6 +1020,7 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return createdQuestionBank(questionBank);
@@ -836,6 +1034,7 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return createdQuestionBank?.call(questionBank);
@@ -849,6 +1048,7 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -866,6 +1066,8 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return createdQuestionBank(this);
@@ -879,6 +1081,7 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return createdQuestionBank?.call(this);
@@ -892,6 +1095,7 @@ class _$CreatedQuestionBankImpl implements _CreatedQuestionBank {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {
@@ -993,6 +1197,7 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return fetchAllQuestionBank(assesment);
@@ -1006,6 +1211,7 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return fetchAllQuestionBank?.call(assesment);
@@ -1019,6 +1225,7 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -1036,6 +1243,8 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return fetchAllQuestionBank(this);
@@ -1049,6 +1258,7 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return fetchAllQuestionBank?.call(this);
@@ -1062,6 +1272,7 @@ class _$FetchAllQuestionBankImpl implements _FetchAllQuestionBank {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {
@@ -1080,6 +1291,175 @@ abstract class _FetchAllQuestionBank implements QuestionBankState {
   List<QuestionBank> get assesment;
   @JsonKey(ignore: true)
   _$$FetchAllQuestionBankImplCopyWith<_$FetchAllQuestionBankImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchQuestionBankbyIdImplCopyWith<$Res> {
+  factory _$$FetchQuestionBankbyIdImplCopyWith(
+          _$FetchQuestionBankbyIdImpl value,
+          $Res Function(_$FetchQuestionBankbyIdImpl) then) =
+      __$$FetchQuestionBankbyIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({QuestionBank questionBank});
+}
+
+/// @nodoc
+class __$$FetchQuestionBankbyIdImplCopyWithImpl<$Res>
+    extends _$QuestionBankStateCopyWithImpl<$Res, _$FetchQuestionBankbyIdImpl>
+    implements _$$FetchQuestionBankbyIdImplCopyWith<$Res> {
+  __$$FetchQuestionBankbyIdImplCopyWithImpl(_$FetchQuestionBankbyIdImpl _value,
+      $Res Function(_$FetchQuestionBankbyIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questionBank = null,
+  }) {
+    return _then(_$FetchQuestionBankbyIdImpl(
+      questionBank: null == questionBank
+          ? _value.questionBank
+          : questionBank // ignore: cast_nullable_to_non_nullable
+              as QuestionBank,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchQuestionBankbyIdImpl implements _FetchQuestionBankbyId {
+  const _$FetchQuestionBankbyIdImpl({required this.questionBank});
+
+  @override
+  final QuestionBank questionBank;
+
+  @override
+  String toString() {
+    return 'QuestionBankState.fetchQuestionBankbyId(questionBank: $questionBank)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchQuestionBankbyIdImpl &&
+            (identical(other.questionBank, questionBank) ||
+                other.questionBank == questionBank));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, questionBank);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchQuestionBankbyIdImplCopyWith<_$FetchQuestionBankbyIdImpl>
+      get copyWith => __$$FetchQuestionBankbyIdImplCopyWithImpl<
+          _$FetchQuestionBankbyIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() noInternet,
+    required TResult Function(QuestionBank questionBank) createdQuestionBank,
+    required TResult Function(List<QuestionBank> assesment)
+        fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
+    required TResult Function(String error) error,
+  }) {
+    return fetchQuestionBankbyId(questionBank);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? noInternet,
+    TResult? Function(QuestionBank questionBank)? createdQuestionBank,
+    TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
+    TResult? Function(String error)? error,
+  }) {
+    return fetchQuestionBankbyId?.call(questionBank);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? noInternet,
+    TResult Function(QuestionBank questionBank)? createdQuestionBank,
+    TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (fetchQuestionBankbyId != null) {
+      return fetchQuestionBankbyId(questionBank);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
+    required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
+    required TResult Function(_QuestionBankFailure value) error,
+  }) {
+    return fetchQuestionBankbyId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
+    TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
+    TResult? Function(_QuestionBankFailure value)? error,
+  }) {
+    return fetchQuestionBankbyId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
+    TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
+    TResult Function(_QuestionBankFailure value)? error,
+    required TResult orElse(),
+  }) {
+    if (fetchQuestionBankbyId != null) {
+      return fetchQuestionBankbyId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchQuestionBankbyId implements QuestionBankState {
+  const factory _FetchQuestionBankbyId(
+      {required final QuestionBank questionBank}) = _$FetchQuestionBankbyIdImpl;
+
+  QuestionBank get questionBank;
+  @JsonKey(ignore: true)
+  _$$FetchQuestionBankbyIdImplCopyWith<_$FetchQuestionBankbyIdImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1154,6 +1534,7 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     required TResult Function(QuestionBank questionBank) createdQuestionBank,
     required TResult Function(List<QuestionBank> assesment)
         fetchAllQuestionBank,
+    required TResult Function(QuestionBank questionBank) fetchQuestionBankbyId,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -1167,6 +1548,7 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     TResult? Function()? noInternet,
     TResult? Function(QuestionBank questionBank)? createdQuestionBank,
     TResult? Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult? Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -1180,6 +1562,7 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     TResult Function()? noInternet,
     TResult Function(QuestionBank questionBank)? createdQuestionBank,
     TResult Function(List<QuestionBank> assesment)? fetchAllQuestionBank,
+    TResult Function(QuestionBank questionBank)? fetchQuestionBankbyId,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -1197,6 +1580,8 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_CreatedQuestionBank value) createdQuestionBank,
     required TResult Function(_FetchAllQuestionBank value) fetchAllQuestionBank,
+    required TResult Function(_FetchQuestionBankbyId value)
+        fetchQuestionBankbyId,
     required TResult Function(_QuestionBankFailure value) error,
   }) {
     return error(this);
@@ -1210,6 +1595,7 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     TResult? Function(_NoInternet value)? noInternet,
     TResult? Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult? Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult? Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult? Function(_QuestionBankFailure value)? error,
   }) {
     return error?.call(this);
@@ -1223,6 +1609,7 @@ class _$QuestionBankFailureImpl implements _QuestionBankFailure {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_CreatedQuestionBank value)? createdQuestionBank,
     TResult Function(_FetchAllQuestionBank value)? fetchAllQuestionBank,
+    TResult Function(_FetchQuestionBankbyId value)? fetchQuestionBankbyId,
     TResult Function(_QuestionBankFailure value)? error,
     required TResult orElse(),
   }) {

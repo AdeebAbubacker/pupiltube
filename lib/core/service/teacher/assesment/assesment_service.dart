@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puppil/core/helper/connection/connectivity_checker.dart';
+import 'package:puppil/core/helper/token/get_uid.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
+import 'package:puppil/core/models/review_model/review_model.dart';
 import 'package:puppil/core/models/submission/submission_model.dart';
 import 'package:uuid/uuid.dart';
 import 'package:dartz/dartz.dart';
@@ -102,6 +104,198 @@ class AssesmentService {
       print(assessments[0].assessmentId);
       return Right(assessments);
     } catch (e) {
+      return const Left(1);
+    }
+  }
+
+  Future<Either<int, List<AssessmentModel>>>
+      fetchAssessmentsForMyClassAsTeacher() async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+      String? uid = await getUserUID();
+
+      final snapshot = await _firestore
+          .collection('assessments')
+          .where('teacherId', isEqualTo: uid)
+          .get();
+      final assessments = snapshot.docs
+          .map((doc) => AssessmentModel.fromMap(doc.data()))
+          .toList();
+      print(assessments.length);
+      return Right(assessments);
+    } catch (e) {
+      return const Left(1);
+    }
+  }
+
+  Future<Either<int, List<AssessmentModel>>>
+      fetchOngoingAssessmentsAsTeacher() async {
+    try {
+      // Check for internet connection
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+
+      // Get the current user's ID
+      String? uid = await getUserUID();
+      if (uid == null) {
+        return const Left(1); // Error getting user ID
+      }
+
+      // Fetch assessments from Firestore where `teacherId` matches
+      final snapshot = await _firestore
+          .collection('assessments')
+          .where('teacherId',
+              isEqualTo:
+                  "aqdgObnesTXLhqnCkaAiV8TTusD3") // Update with uid variable if dynamic user is needed
+          .get();
+
+      print(
+          'Fetched documents count: ${snapshot.docs.length}'); // Print count for debugging
+      final now = Timestamp.now();
+
+      // Client-side filtering to check if `endTime` is after the current time
+      final ongoingAssessments = snapshot.docs
+          .where((doc) {
+            final data = doc.data();
+            final endTime = (data['timeSlot']?['endTime'])
+                as Timestamp?; // Safely accessing nested fields
+            if (endTime == null) {
+              return false; // If no endTime, consider it invalid
+            }
+            print('EndTime: $endTime, Now: $now'); // Print for debugging
+            return endTime.compareTo(now) > 0; // Filter if endTime is after now
+          })
+          .map((doc) => AssessmentModel.fromMap(doc.data())) // Map to model
+          .toList();
+
+      print(
+          'Ongoing assessments count: ${ongoingAssessments.length}'); // Print filtered count
+      return Right(ongoingAssessments);
+    } catch (e) {
+      print(
+          'Error fetching assessments: ${e.toString()}'); // Debugging error message
+      return const Left(1); // General error
+    }
+  }
+
+  // Method to get student answers with comparison to correct answers
+  Future<Either<int, AssessmentReviewResponse> > getAssessmentReview({
+    required String assessmentId,
+    required String studentId,
+  }) async {
+    try {
+      // Check for internet connectivity
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+
+      // Fetch the assessment data
+      DocumentSnapshot assessmentSnapshot =
+          await _firestore.collection('assessments').doc(assessmentId).get();
+
+      if (!assessmentSnapshot.exists) {
+        return const Left(1);
+      }
+
+      var assessmentData = assessmentSnapshot.data() as Map<String, dynamic>;
+      List<dynamic> questions = assessmentData['questions'] ?? [];
+
+      // Fetch the student submission data
+      QuerySnapshot submissionSnapshot = await _firestore
+          .collection('studentSubmissions')
+          .where('assessmentId', isEqualTo: assessmentId)
+          .where('studentId', isEqualTo: studentId)
+          .get();
+
+      if (submissionSnapshot.docs.isEmpty) {
+        return const Left(1);
+      }
+
+      var submissionData =
+          submissionSnapshot.docs.first.data() as Map<String, dynamic>;
+      List<dynamic> studentAnswers = submissionData['answers'] ?? [];
+
+      // Create a list to store the detailed review data
+      List<ReviewModel> reviewData = [];
+      int totalScore = 0;
+
+      // Iterate over the assessment questions to compare with student's answers
+      for (var question in questions) {
+        String questionId = question['questionId'] ?? '';
+        String questionText = question['question'] ?? '';
+        List<dynamic> options = question['options'] ?? [];
+        String correctAnswer = question['answer'] ?? '';
+
+        // Find the student's answer for the current question
+        var studentAnswer = studentAnswers.firstWhere(
+          (answer) => answer['questionId'] == questionId,
+          orElse: () => null,
+        );
+
+        // Extract the student's selected answer
+        String selectedAnswer =
+            studentAnswer != null ? studentAnswer['answer'] : 'Not answered';
+
+        // Check if the answer is correct and update the score
+        if (selectedAnswer == correctAnswer) {
+          totalScore++;
+        }
+
+        // Add the question review to the list
+        reviewData.add(ReviewModel(
+          questionId: questionId,
+          question: questionText,
+          options: List<String>.from(options),
+          correctAnswer: correctAnswer,
+          selectedAnswer: selectedAnswer,
+        ));
+      }
+
+      // Prepare the final response with review data and total score
+      final response = AssessmentReviewResponse(
+        totalScore: totalScore,
+        review: reviewData,
+      );
+      print(response.totalScore);
+      return Right(response);
+    } catch (e) {
+      return Left(1);
+    }
+  }
+
+  Future<Either<int, List<AssessmentModel>>> fetchDraftAssessments() async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0);
+      }
+
+      String? uid = await getUserUID();
+      if (uid == null) {
+        return const Left(1); // Error getting user ID
+      }
+
+      final snapshot = await _firestore
+          .collection('assessments')
+          .where('teacherId', isEqualTo: uid)
+          .where('status', isEqualTo: "draft")
+          .get();
+
+      final assessments = snapshot.docs
+          .map((doc) => AssessmentModel.fromMap(doc.data()))
+          .toList();
+
+      print('Fetched draft assessments count: ${assessments.length}');
+      return Right(assessments);
+    } catch (e, stackTrace) {
+      print('Error fetching draft assessments: $e');
+      print(stackTrace);
       return const Left(1);
     }
   }
@@ -214,8 +408,7 @@ class AssesmentService {
       }
       QuerySnapshot classesSnapshot = await _firestore
           .collection('studentSubmissions')
-          .where('assessmentId',
-              isEqualTo: "2862d12e-2da2-4d38-9420-793caf61b627")
+          .where('assessmentId', isEqualTo: uid)
           .get();
 
       List<SubmissionModel> submissionList = classesSnapshot.docs.map((doc) {
@@ -280,9 +473,4 @@ class AssesmentService {
       return Left('Failed to fetch class ID: ${e.toString()}');
     }
   }
-
-
-
-
 }
-

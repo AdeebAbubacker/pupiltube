@@ -20,8 +20,10 @@ class SubmissionService {
       }
 
       // Step 1: Fetch the assessment document to get classId
-      DocumentSnapshot assessmentSnapshot =
-          await _firestore.collection('assessments').doc(assessmentId).get();
+      DocumentSnapshot assessmentSnapshot = await _firestore
+          .collection('assessments')
+          .doc(assessmentId)
+          .get();
 
       if (!assessmentSnapshot.exists) {
         print("Assessment not found");
@@ -101,7 +103,7 @@ class SubmissionService {
 
       // Output results
       print('Students who submitted: $studentsSubmitted');
-      print('Students who did not submit: $studentsNotSubmittedList');
+      print('Students who did not submit: ${studentsNotSubmittedList[0]}');
 
       // Return the list of students who did not submit
       print(studentsNotSubmittedList.length);

@@ -132,8 +132,9 @@ class QuestionBankIntroScreen extends StatelessWidget {
                                   title: 'Chapter  ',
                                   description: 'Chemical Formula',
                                 );
-                                AppRouteService.navigateToquestionBankCreation(
-                                    context);
+                                AppRouteService.navigatequestionBnakCreation(
+                                    context,
+                                    someArgument: 'ssssssssssssss');
                               },
                               child: Text(
                                 "Continue",
@@ -159,7 +160,8 @@ class QuizInfoItem extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const QuizInfoItem({super.key, 
+  const QuizInfoItem({
+    super.key,
     required this.icon,
     required this.title,
     required this.subtitle,

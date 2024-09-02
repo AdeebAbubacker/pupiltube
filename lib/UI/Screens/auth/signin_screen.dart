@@ -13,8 +13,10 @@ class SigninScreen extends StatefulWidget {
 
 class _SigninScreenState extends State<SigninScreen> {
   bool _obscureText = true;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
@@ -60,79 +62,106 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Log-in",
-                      style: TextStyles.rubik23black54A,
-                    ),
-                    const SizedBox(height: 30),
-                    Text(
-                      "Email",
-                      style: TextStyles.rubik15black54A,
-                    ),
-                    TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: 'Your email id',
-                        hintStyle: TextStyles.rubik12black54Aw400,
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Log-in",
+                        style: TextStyles.rubik23black54A,
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      "Password",
-                      style: TextStyles.rubik15black54A,
-                    ),
-                    TextFormField(
-                      controller: passwordController,
-                      obscureText: _obscureText,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        hintStyle: TextStyles.rubik12black54Aw400,
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscureText
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.grey,
+                      const SizedBox(height: 30),
+                      Text(
+                        "Email",
+                        style: TextStyles.rubik15black54A,
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          hintText: 'Your email id',
+                          hintStyle: TextStyles.rubik12black54Aw400,
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
                           ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          // Basic email format validation
+                          if (!RegExp(
+                                  r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        "Password",
+                        style: TextStyles.rubik15black54A,
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          hintStyle: TextStyles.rubik12black54Aw400,
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          if (value.length < 6) {
+                            return 'Password must be at least 6 characters';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
                           onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
+                            if (_formKey.currentState?.validate() ?? false) {
+                              // Form is valid, proceed with login
+                              BlocProvider.of<LoginBloc>(context).add(
+                                LoginEvent.loginRequested(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                ),
+                              );
+                            }
                           },
+                          child: const Text("Login"),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            print("objectxxxxxxxxx");
-                            BlocProvider.of<LoginBloc>(context).add(
-                              LoginEvent.loginRequested(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              ),
-                            );
-                          },
-                          child: const Text("Login ffffffff")),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

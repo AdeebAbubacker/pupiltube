@@ -119,7 +119,7 @@ class GetRoleService {
       // If a class is found, return a map with className and docId
       if (classSnapshot.docs.isNotEmpty) {
         final classDoc = classSnapshot.docs.first;
-        final data = classDoc.data() as Map<String, dynamic>;
+        final data = classDoc.data();
         final className = data['className'] as String?;
         final docId = classDoc.id;
 

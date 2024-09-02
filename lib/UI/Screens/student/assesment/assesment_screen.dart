@@ -97,11 +97,12 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
           child: Row(
             children: [
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final res = await getUserUID();
                   _scrollToItem(0, "All");
                   BlocProvider.of<AssesmentBloc>(context).add(
                       AssesmentEvent.fetchAssesmentForMyClassEvent(
-                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                          id: res.toString()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _selectedButton == "All"
@@ -112,11 +113,11 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
               ),
               SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final res = await getUserUID();
                   _scrollToItem(10, "Todo");
                   BlocProvider.of<AssesmentBloc>(context).add(
-                      AssesmentEvent.fetchAssesmentToDo(
-                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                      AssesmentEvent.fetchAssesmentToDo(id: res.toString()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _selectedButton == "Todo"
@@ -127,11 +128,11 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
               ),
               SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final res = await getUserUID();
                   _scrollToItem(40, "Overdue");
                   BlocProvider.of<AssesmentBloc>(context).add(
-                      AssesmentEvent.fetchAssesmentOverDue(
-                          id: "1YBTaDudA2MWwGrPlwpy8EYip4m1"));
+                      AssesmentEvent.fetchAssesmentOverDue(id: res.toString()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _selectedButton == "Overdue"
@@ -142,8 +143,11 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
               ),
               SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final res = await getUserUID();
                   _scrollToItem(50, "Completed");
+                  BlocProvider.of<AssesmentBloc>(context).add(
+                      AssesmentEvent.fetchAssesmentCompleted(id: res.toString()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _selectedButton == "Completed"
@@ -174,19 +178,30 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(12)),
-                              color: const Color.fromARGB(255, 199, 199, 199)),
+                              color: const Color.fromARGB(255, 244, 244, 244)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Text("${value.assesment[index].description}"),
-                                ElevatedButton(
+                                // ElevatedButton(
+                                //     onPressed: () {
+                                //       AppRouteService.navigateTotest2(context,
+                                //           assementmodel:
+                                //               value.assesment[index]);
+                                //     },
+                                //     child: Text("data"))
+                                Spacer(),
+                                IconButton(
                                     onPressed: () {
                                       AppRouteService.navigateTotest2(context,
                                           assementmodel:
                                               value.assesment[index]);
                                     },
-                                    child: Text("data"))
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: Colors.black,
+                                    ))
                               ],
                             ),
                           )),
@@ -207,20 +222,23 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(12)),
-                              color: const Color.fromARGB(255, 199, 199, 199)),
+                              color: const Color.fromARGB(255, 244, 244, 244)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Text("${value.assesment[index].description}"),
                                 Spacer(),
-                                ElevatedButton(
+                                IconButton(
                                     onPressed: () {
                                       AppRouteService.navigateTotest2(context,
                                           assementmodel:
                                               value.assesment[index]);
                                     },
-                                    child: Text("data"))
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: Colors.black,
+                                    ))
                               ],
                             ),
                           )),
@@ -241,19 +259,60 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(12)),
-                              color: const Color.fromARGB(255, 199, 199, 199)),
+                              color: const Color.fromARGB(255, 244, 244, 244)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Text("${value.assesment[index].description}"),
-                                ElevatedButton(
+                                Spacer(),
+                                IconButton(
                                     onPressed: () {
                                       AppRouteService.navigateTotest2(context,
                                           assementmodel:
                                               value.assesment[index]);
                                     },
-                                    child: Text("data"))
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: Colors.black,
+                                    ))
+                              ],
+                            ),
+                          )),
+                    );
+                  },
+                );
+              }, fetchAssesmentCompleted: (value) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: value.assesment.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: const Color.fromARGB(255, 244, 244, 244)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text("${value.assesment[index].description}"),
+                                Spacer(),
+                                // IconButton(
+                                //     onPressed: () {
+                                //       AppRouteService.navigateTotest2(context,
+                                //           assementmodel:
+                                //               value.assesment[index]);
+                                //     },
+                                //     icon: Icon(
+                                //       Icons.arrow_forward_ios_outlined,
+                                //       color: Colors.black,
+                                //     ))
                               ],
                             ),
                           )),

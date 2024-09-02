@@ -10,7 +10,7 @@ part 'get_user_data_by_roles_bloc.freezed.dart';
 class GetUserDataByRolesBloc
     extends Bloc<GetUserDataByRolesEvent, GetUserDataByRolesState> {
   final GetRoleService getRoleService;
-  GetUserDataByRolesBloc({required this.getRoleService}) : super(_Initial()) {
+  GetUserDataByRolesBloc({required this.getRoleService}) : super(const _Initial()) {
     on<_FetchGetUserDataByRolesEvent>((event, emit) async {
       emit(const GetUserDataByRolesState.loading());
 

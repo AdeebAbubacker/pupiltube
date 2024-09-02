@@ -108,7 +108,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
 
       try {
         final result = await assesmentStudentService.getAssessmentsToDoForUser(
-            uid: "1YBTaDudA2MWwGrPlwpy8EYip4m1");
+            uid: event.id);
 
         await result.fold((failure) async {
           if (failure == 0) {
@@ -132,7 +132,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
 
       try {
         final result = await assesmentStudentService
-            .getOverdueAssessmentsForUser(uid: "1YBTaDudA2MWwGrPlwpy8EYip4m1");
+            .getOverdueAssessmentsForUser(uid: event.id);
 
         await result.fold((failure) async {
           if (failure == 0) {
@@ -151,7 +151,30 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-    on<_ImportQuestionBankEvent>((event, emit) async {
+     on<_FetchAssesmentCompleted>((event, emit) async {
+      emit(const AssesmentState.loading());
+
+      try {
+        final result = await assesmentStudentService.getCompletedAssessments(uid: event!.id);
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchAssesmentCompleted(assesment: success));
+        });
+      } catch (e) {
+        print('An error');
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
+   on<_ImportQuestionBankEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 
       try {
@@ -170,6 +193,80 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
           emit(AssesmentState.importQuestionBankSuccess(success: success));
         });
       } catch (e) {
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
+    on<_FetchAssesmentForMyClassAsTeacher>((event, emit) async {
+      emit(const AssesmentState.loading());
+
+      try {
+        final result =
+            await assesmentService.fetchAssessmentsForMyClassAsTeacher();
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchAssesmentForMyClassAsTeacher(
+              assesment: success));
+        });
+      } catch (e) {
+        print('An error');
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
+    on<_FetchOngoingAssesmentAsTeacher>((event, emit) async {
+      emit(const AssesmentState.loading());
+
+      try {
+        final result =
+            await assesmentService.fetchOngoingAssessmentsAsTeacher();
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchOngoingAssesmentAsTeacher(
+              assesment: success));
+        });
+      } catch (e) {
+        print('An error');
+        emit(AssesmentState.error(error: 'An error occurred: $e'));
+      }
+    });
+
+    on<_FetchdraftAssement>((event, emit) async {
+      emit(const AssesmentState.loading());
+
+      try {
+        final result = await assesmentService.fetchDraftAssessments();
+
+        await result.fold((failure) async {
+          if (failure == 0) {
+            print('No internt');
+            emit(const AssesmentState.noInternet());
+          } else {
+            print('An error');
+            emit(AssesmentState.error(error: 'An error occurred: $failure'));
+          }
+        }, (success) async {
+          print('An success');
+          emit(AssesmentState.fetchdraftAssesment(assesment: success));
+        });
+      } catch (e) {
+        print('An error');
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
