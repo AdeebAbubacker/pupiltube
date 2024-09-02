@@ -43,6 +43,7 @@ import 'package:puppil/core/view_model/students_event/students_events_bloc.dart'
 import 'package:puppil/firebase_options.dart';
 import 'package:puppil/test/pppppppppppp.dart';
 import 'package:puppil/test/test_screen_2.dart';
+import 'package:puppil/UI/Screens/auth/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -129,7 +130,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: {
-          '/': (context) => TeachesDashboardScreen(),
+          '/': (context) => SplashScreen(),
           '/introScreen': (context) => IntroScreen(),
           '/signupRoleScreen': (context) => SignUpRolePage(),
           // '/signinRoleScreen': (context) => SigninRoleScreen(),

@@ -20,17 +20,17 @@ A new Flutter project.
 
 ### 👨‍🏫 For Teachers
 
-- 📝 **Manage Students**: View and manage student profiles, including attendance and grades.
-- 📄 **Assignments**: Create, assign, and grade assignments with ease.
+- 📝 **Question Bank**: View and manage Question Bank , including options.
+- 📄 **Assesments**: Create, assign, and assesments with ease.
 - 📢 **Announcements**: Post important updates and keep students informed.
-- 📅 **Attendance Tracking**: Mark attendance directly from your device.
+- 📅 **Assements Tracking**: Track assement, regarding students attended and not attended.
 
 ### 👩‍🎓 For Students
 
 - 👤 **Profile**: View personal information, attendance records, and grades.
-- 📥 **Assignments**: Submit assignments and track grades and feedback.
+- 📥 **Assesments**: Submit assesments and track grades and feedback.
 - 🛎️ **Announcements**: Stay updated with the latest information from teachers.
-- 📊 **Attendance View**: Monitor your attendance records.
+- 📊 **Events View**: Get Event details.
 
 ## 🛠️ Tech Stack
 
