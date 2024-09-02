@@ -7,7 +7,7 @@ A new Flutter project.
 # 📚 SchoolConnect - Mobile App
 
 <div align="center">
-  <img src="link-to-logo-or-banner-image" alt="SchoolConnect Logo" width="200"/>
+  <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/icon/pupil.png" alt="SchoolConnect Logo" width="200"/>
   <h1>📚 SchoolConnect - Mobile App</h1>
   <p>An intuitive app designed to enhance communication between students and teachers, streamlining education through technology.</p>
   <a href="https://github.com/yourusername/schoolconnect"><img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/animated/Data%20Error.gif" alt="GitHub Stars"></a>
