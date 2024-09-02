@@ -4,13 +4,42 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+# 📚 SchoolConnect - Mobile App
 
-A few resources to get you started if this is your first Flutter project:
+SchoolConnect is a mobile application designed to streamline communication and management between students and teachers. The app offers features like attendance tracking, assignment submissions, grading, and announcements to enhance the educational experience.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📝 Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### For Teachers
+- **Manage Students**: View and manage student profiles, including attendance and grades.
+- **Assignments**: Create, assign, and grade assignments.
+- **Announcements**: Post announcements to keep students informed.
+- **Attendance Tracking**: Mark attendance directly from the app.
+
+### For Students
+- **Profile**: View personal information, attendance records, and grades.
+- **Assignments**: Submit assignments and track grades and feedback.
+- **Announcements**: Stay updated with the latest announcements from teachers.
+- **Attendance View**: Check attendance records and status.
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Flutter
+- **Backend**: Firebase / Node.js
+- **Database**: Firestore / MongoDB
+- **Authentication**: Firebase Authentication (Email/Password)
+- **Storage**: Cloud Storage for assignment submissions
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK installed
+- Android Studio or Xcode for iOS development
+- Firebase account setup
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/schoolconnect.git
+   cd schoolconnect
