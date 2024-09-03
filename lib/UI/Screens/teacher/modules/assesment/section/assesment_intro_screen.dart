@@ -1,22 +1,85 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:puppil/UI/Screens/auth/signup_screen.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 
-class AssesmentIntroScreen extends StatelessWidget {
-  final String? someArgument;
+class AssesmentIntroScreen extends StatefulWidget {
   AssesmentIntroScreen({
     super.key,
-     this.someArgument,
   });
+
+  @override
+  State<AssesmentIntroScreen> createState() => _AssesmentIntroScreenState();
+}
+
+class _AssesmentIntroScreenState extends State<AssesmentIntroScreen> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController linktocourseController = TextEditingController();
+
   TextEditingController timelimitController = TextEditingController();
+
   TextEditingController instructionsController = TextEditingController();
+
   TextEditingController classController = TextEditingController();
+  String? _selectedString;
+  final List<ClassItem> classItems = [
+    ClassItem(
+        displayName: "Class 4", id: "d0087d35-9bdc-4d3b-af95-de9b1b910c41"),
+    ClassItem(displayName: "Class 5", id: "ELdOiMB20ROxsHtu8R74"),
+  ];
+
+// Variable to hold the selected class
+  ClassItem? _selectedClassItem;
+
+  List<DropdownMenuItem<ClassItem>> _addDividersAfterItems(
+      List<ClassItem> items) {
+    final List<DropdownMenuItem<ClassItem>> menuItems = [];
+    for (final ClassItem item in items) {
+      menuItems.addAll(
+        [
+          DropdownMenuItem<ClassItem>(
+            value: item,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                item.displayName, // Display the class name
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+          // If it's the last item, we will not add a Divider after it.
+          if (item != items.last)
+            const DropdownMenuItem<ClassItem>(
+              enabled: false,
+              child: Divider(),
+            ),
+        ],
+      );
+    }
+    return menuItems;
+  }
+
+  List<double> _getCustomItemsHeights() {
+    final List<double> itemsHeights = [];
+    for (int i = 0; i < (classItems.length * 2) - 1; i++) {
+      if (i.isEven) {
+        itemsHeights.add(40); // Height for menu items
+      }
+      // Divider indexes will be the odd indexes
+      if (i.isOdd) {
+        itemsHeights.add(4); // Height for dividers
+      }
+    }
+    return itemsHeights;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +91,10 @@ class AssesmentIntroScreen extends StatelessWidget {
         state.maybeMap(
           createdAssesment: (value) {
             // Navigate to home screen or update UI
-            AppRouteService.navigateToAssesmentCreation(context,
+            print('----------------------');
+            print(value.assesment.assessmentId);
+            print('----------------------');
+            AppRouteService.navigateToAssesmentStep2Creation(context,
                 model: ModelToAssesmentCreation(
                   assementId: value.assesment.assessmentId.toString(),
                   title: value.assesment.title.toString(),
@@ -170,15 +236,61 @@ class AssesmentIntroScreen extends StatelessWidget {
                                   hintText: 'Instructions'),
                             ),
                             SizedBox(height: 10),
-                            TextFormField(
-                              controller: classController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(9),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 231, 231, 231),
+                                borderRadius: BorderRadius.circular(8.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton2<ClassItem>(
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Select Your Class',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).hintColor,
                                     ),
                                   ),
-                                  hintText: 'Select Class'),
+                                  items: _addDividersAfterItems(
+                                      classItems), // Use the updated method
+                                  value: _selectedClassItem,
+                                  onChanged: (ClassItem? value) {
+                                    setState(() {
+                                      _selectedClassItem =
+                                          value; // Update selected class item
+                                      _selectedString = value
+                                          ?.id; // Use the selected ID for processing
+                                    });
+                                  },
+                                  buttonStyleData: const ButtonStyleData(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 16),
+                                    height: 40,
+                                    width: 140,
+                                  ),
+                                  dropdownStyleData: const DropdownStyleData(
+                                    maxHeight: 200,
+                                  ),
+                                  menuItemStyleData: MenuItemStyleData(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    customHeights: _getCustomItemsHeights(),
+                                  ),
+                                  iconStyleData: const IconStyleData(
+                                    openMenuIcon: Icon(Icons.arrow_drop_up),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(height: 30),
                             BlocBuilder<AssesmentBloc, AssesmentState>(

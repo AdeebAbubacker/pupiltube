@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/assesment_screen.dart';
-import 'package:puppil/UI/Screens/teacher/questions/question_screen.dart';
-import 'package:puppil/UI/Screens/teacher/home/home_screen.dart';
-import 'package:puppil/UI/Screens/teacher/profile/profile_screen.dart';
-import 'package:puppil/UI/Screens/teacher/analatycs/analatycs_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/assesment_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/questions/question_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/home/home_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/profile/profile_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/analatycs/analatycs_screen.dart';
 
 class TeachesDashboardScreen extends StatefulWidget {
   const TeachesDashboardScreen({super.key});

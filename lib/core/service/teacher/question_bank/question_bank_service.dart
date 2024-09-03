@@ -118,6 +118,35 @@ class QuestionBankService {
     }
   }
 
+  Future<Either<int, List<QuestionBank>>> fetchQuestionBankByTeacherId({
+    required String teacherUid,
+  }) async {
+    try {
+      final hasInternet = await _connectivityChecker.hasInternetAccess();
+      if (!hasInternet) {
+        return const Left(0); // No internet connection
+      }
+
+      final querySnapshot = await _firestore
+          .collection('questionBanks')
+          .where('teacherId', isEqualTo: teacherUid)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Map each document to a QuestionBank object
+        final questionBanks = querySnapshot.docs
+            .map((doc) => QuestionBank.fromMap(doc.data()))
+            .toList();
+
+        return Right(questionBanks);
+      } else {
+        return const Left(1); // No documents found
+      }
+    } catch (e) {
+      return const Left(1); // Error occurred
+    }
+  }
+
   Future<Either<int, List<QuestionBank>>> featchALlQuestionBank() async {
     try {
       final hasInternet = await _connectivityChecker.hasInternetAccess();
@@ -160,7 +189,7 @@ class QuestionBankService {
           .doc(questionBankId)
           .set(questionBank);
 
-       print('sssss');
+      print('sssss');
     } catch (e) {
       print('eerrr ${e.toString()}');
     }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:puppil/UI/Screens/auth/intro_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_doyouknow_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_intro_screen.dart';
-import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_creation_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_step1_creation.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_intro_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/questions/section/question_bank_creation_screen.dart';
 import 'package:puppil/core/models/assesment/assesment_model.dart';
 import 'package:puppil/core/models/courses/courses_model.dart';
 
@@ -18,15 +18,15 @@ class AppRouteService {
     Navigator.of(context).push(_questionBnakCreation(someArgument: someArgument));
   }
 
-  static void navigateToassesmentIntro(BuildContext context,{required String someArgument}) {
-    Navigator.of(context).push(_assesmentIntro(someArgument: someArgument));
+  static void navigateToassesmentIntro(BuildContext context,) {
+    Navigator.of(context).push(_assesmentIntro());
   }
 
-  static void navigateToassesmentDoYouKnow(BuildContext context,{required String someArgument}) {
-    Navigator.of(context).push(_assesmentDoYouKnow(someArgument: someArgument));
+  static void navigateToAssesmentStep1Creation(BuildContext context,) {
+    Navigator.of(context).push(_assesmentStep1Creation());
   }
 
-  static void navigateToAssesmentCreation(BuildContext context,
+  static void navigateToAssesmentStep2Creation(BuildContext context,
       {required ModelToAssesmentCreation model}) {
     Navigator.of(context).pushNamed('/assesmentCreation', arguments: model);
   }
@@ -95,10 +95,10 @@ class AppRouteService {
     Navigator.of(context).pushNamed('/videoPlayScreen', arguments: data);
   }
 
-  static Route _assesmentDoYouKnow({required String someArgument}) {
+  static Route _assesmentStep1Creation() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          AssesmentDoyouknowScreen(someArgument: someArgument), // Pass argument here
+          AssesmentStep1Creation(), // Pass argument here
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0); // Start from right to left
         const end = Offset.zero;
@@ -114,10 +114,10 @@ class AppRouteService {
       },
     );
   }
-static Route _assesmentIntro({required String someArgument}) {
+static Route _assesmentIntro() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          AssesmentIntroScreen(someArgument: someArgument), // Replace with your target screen
+          AssesmentIntroScreen(), // Replace with your target screen
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0); // Start from right to left
         const end = Offset.zero;

@@ -119,7 +119,7 @@ class AssesmentService {
 
       final snapshot = await _firestore
           .collection('assessments')
-          .where('teacherId', isEqualTo: uid)
+          .where('teacherId', isEqualTo: "RA5PL0Na31UYmhdh6WcqkJkpo1k1")
           .get();
       final assessments = snapshot.docs
           .map((doc) => AssessmentModel.fromMap(doc.data()))
@@ -151,7 +151,7 @@ class AssesmentService {
           .collection('assessments')
           .where('teacherId',
               isEqualTo:
-                  "aqdgObnesTXLhqnCkaAiV8TTusD3") // Update with uid variable if dynamic user is needed
+                  "RA5PL0Na31UYmhdh6WcqkJkpo1k1") // Update with uid variable if dynamic user is needed
           .get();
 
       print(
@@ -184,7 +184,7 @@ class AssesmentService {
   }
 
   // Method to get student answers with comparison to correct answers
-  Future<Either<int, AssessmentReviewResponse> > getAssessmentReview({
+  Future<Either<int, AssessmentReviewResponse>> getAssessmentReview({
     required String assessmentId,
     required String studentId,
   }) async {
@@ -283,7 +283,7 @@ class AssesmentService {
 
       final snapshot = await _firestore
           .collection('assessments')
-          .where('teacherId', isEqualTo: uid)
+          .where('teacherId', isEqualTo: "RA5PL0Na31UYmhdh6WcqkJkpo1k1")
           .where('status', isEqualTo: "draft")
           .get();
 
@@ -309,7 +309,7 @@ class AssesmentService {
 
       final doc = await _firestore
           .collection('assessments')
-          .doc('02f706ea-df08-4034-9d17-99b1177573c6')
+          .doc(id)
           .get();
 
       if (doc.exists) {

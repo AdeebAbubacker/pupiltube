@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 
-class AssesmentDoyouknowScreen extends StatelessWidget {
+class AssesmentStep1Creation extends StatelessWidget {
   final String? someArgument;
-  AssesmentDoyouknowScreen({
+  AssesmentStep1Creation({
     super.key,
     this.someArgument,
   });
@@ -101,7 +101,7 @@ class AssesmentDoyouknowScreen extends StatelessWidget {
                                   onPressed: () async {
                                     AppRouteService.navigateToassesmentIntro(
                                         context,
-                                        someArgument: 's');
+                                        );
                                   },
                                   child: Text("Continue")),
                             )

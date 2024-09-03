@@ -151,11 +151,12 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-     on<_FetchAssesmentCompleted>((event, emit) async {
+    on<_FetchAssesmentCompleted>((event, emit) async {
       emit(const AssesmentState.loading());
 
       try {
-        final result = await assesmentStudentService.getCompletedAssessments(uid: event!.id);
+        final result = await assesmentStudentService.getCompletedAssessments(
+            uid: event!.id);
 
         await result.fold((failure) async {
           if (failure == 0) {
@@ -174,7 +175,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });
-   on<_ImportQuestionBankEvent>((event, emit) async {
+    on<_ImportQuestionBankEvent>((event, emit) async {
       emit(const AssesmentState.loading());
 
       try {
@@ -217,7 +218,7 @@ class AssesmentBloc extends Bloc<AssesmentEvent, AssesmentState> {
               assesment: success));
         });
       } catch (e) {
-        print('An error');
+        print('An error ${e.toString()}');
         emit(AssesmentState.error(error: 'An error occurred: $e'));
       }
     });

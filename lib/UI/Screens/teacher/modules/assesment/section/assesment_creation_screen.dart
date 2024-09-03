@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/widget/question_bank_popup.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/widget/question_bank_popup.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/service/teacher/question_bank/question_bank_service.dart';
@@ -116,15 +116,73 @@ class AssesmentCreationScreen extends StatelessWidget {
                         children: [
                           SizedBox(height: 12),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                BlocBuilder<AssesmentBloc, AssesmentState>(
+                                  builder: (context, state) {
+                                    return state.maybeMap(
+                                      fetchAssesmentBtId: (value) {
+                                        return ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              value.assesment.questions?.length,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                                decoration: BoxDecoration(
+                                                  color: const Color.fromARGB(
+                                                      255, 239, 239, 239),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.black
+                                                          .withOpacity(0.1),
+                                                      spreadRadius: 2,
+                                                      blurRadius: 5,
+                                                      offset:
+                                                          const Offset(0, 2),
+                                                    ),
+                                                  ],
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  9),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  9)),
+                                                ),
+                                                child: Wrap(
+                                                  children: [
+                                                    Text(
+                                                        '${value.assesment.questions?[index].question}')
+                                                  ],
+                                                ));
+                                          },
+                                        );
+                                      },
+                                      orElse: () {
+                                        return SizedBox.shrink();
+                                      },
+                                    );
+                                  },
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      BlocProvider.of<AssesmentBloc>(context)
+                                          .add(AssesmentEvent.fetchAssesmentById(
+                                              id: 'bbef3a89-b0bb-4364-80d9-984f1f7e7edd'));
+                                    },
+                                    child: Text("sss")),
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      _showQuestionBottomSheet(context);
+                                      _showQuestionBottomSheet(context,
+                                          modelToAssesmentCreation:
+                                              modelToAssesmentCreation);
                                     },
                                     child: Text("Add Question"),
                                   ),
@@ -169,7 +227,10 @@ class AssesmentCreationScreen extends StatelessWidget {
                                                       .width *
                                                   0.9,
                                               height: 500,
-                                              child: PopupContent(),
+                                              child: PopupContent(
+                                                modelToAssesmentCreation:
+                                                    modelToAssesmentCreation,
+                                              ),
                                             ),
                                           );
                                         },
@@ -230,7 +291,8 @@ class AssesmentCreationScreen extends StatelessWidget {
     );
   }
 
-  void _showQuestionBottomSheet(BuildContext context) {
+  void _showQuestionBottomSheet(BuildContext context,
+      {required ModelToAssesmentCreation modelToAssesmentCreation}) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -311,6 +373,9 @@ class AssesmentCreationScreen extends StatelessWidget {
                                     "correctAnswer": "well"
                                   },
                                 );
+                                BlocProvider.of<AssesmentBloc>(context).add(
+                                    AssesmentEvent.fetchAssesmentById(
+                                        id: '${modelToAssesmentCreation.assementId}'));
                                 Navigator.pop(
                                     context); // Close the bottom sheet
                               },

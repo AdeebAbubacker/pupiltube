@@ -5,22 +5,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/admin/loyout_screen.dart';
+import 'package:puppil/UI/Screens/admin/layout/loyout_screen.dart';
 import 'package:puppil/UI/Screens/auth/intro_screen.dart';
 import 'package:puppil/UI/Screens/auth/signin_screen.dart';
 import 'package:puppil/UI/Screens/auth/signup_role_screen.dart';
 import 'package:puppil/UI/Screens/auth/signup_screen.dart';
 import 'package:puppil/UI/Screens/auth/splash_screen.dart';
 import 'package:puppil/UI/Screens/student/layout/dashboard.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_creation_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_doyouknow_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_intro_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_review_screen.dart';
-import 'package:puppil/UI/Screens/teacher/assesment/section/assesment_status.dart';
-import 'package:puppil/UI/Screens/teacher/home/widget/video_player.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_creation_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_step1_creation.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_intro_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_review_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/assesment/section/assesment_status.dart';
+import 'package:puppil/UI/Screens/teacher/modules/home/widget/video_player.dart';
 import 'package:puppil/UI/Screens/teacher/layout/dashboard.dart';
-import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_creation_screen.dart';
-import 'package:puppil/UI/Screens/teacher/questions/section/question_bank_intro_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/questions/section/question_bank_creation_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/questions/section/question_bank_intro_screen.dart';
 import 'package:puppil/core/service/admin/role_servcie/get_role_service.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/service/student/assesment/assesment_service.dart';
@@ -33,6 +33,7 @@ import 'package:puppil/core/view_model/GetMyClassCourses/get_my_class_courses_bl
 import 'package:puppil/core/view_model/GetUserDataByRoles/get_user_data_by_roles_bloc.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 import 'package:puppil/core/view_model/fetch_assesment_by_colleages/fetch_assesment_by_colleages_bloc.dart';
+import 'package:puppil/core/view_model/getMyQuestionBankAsTeacher/get_my_question_banks_as_teacher_bloc.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
 import 'package:puppil/core/view_model/review_assesment/review_assesment_bloc.dart';
@@ -43,7 +44,6 @@ import 'package:puppil/core/view_model/students_event/students_events_bloc.dart'
 import 'package:puppil/firebase_options.dart';
 import 'package:puppil/test/pppppppppppp.dart';
 import 'package:puppil/test/test_screen_2.dart';
-import 'package:puppil/UI/Screens/auth/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -120,6 +120,12 @@ class MyApp extends StatelessWidget {
             eventsService: EventsService(),
           ),
         ),
+        BlocProvider(
+          create: (context) => GetMyQuestionBanksAsTeacherBloc(
+            questionBankService: QuestionBankService(),
+          ),
+        ),
+        
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -133,14 +139,13 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashScreen(),
           '/introScreen': (context) => IntroScreen(),
           '/signupRoleScreen': (context) => SignUpRolePage(),
-          // '/signinRoleScreen': (context) => SigninRoleScreen(),
           '/signinScreen': (context) => SigninScreen(),
           '/signupScreen': (context) => SignupScreen(),
           '/test2': (context) => TestScreen2(),
           '/questionBankIntro': (context) => QuestionBankIntroScreen(),
           '/questionBankCreation': (context) => QuestionBankCreationScreen(),
           '/assesmentIntro': (context) => AssesmentIntroScreen(),
-          '/assesmentDoYouKnow': (context) => AssesmentDoyouknowScreen(),
+          '/assesmentDoYouKnow': (context) => AssesmentStep1Creation(),
           '/assesmentCreation': (context) => AssesmentCreationScreen(),
           '/studentDashboard': (context) => StudentDashboardScreen(),
           '/teacherDashboard': (context) => TeachesDashboardScreen(),

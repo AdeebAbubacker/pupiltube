@@ -56,7 +56,70 @@ class _AssesmentScreenState extends State<AssesmentScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
+        SizedBox(height: 10),
+        Text(
+          "Assesment",
+          style: TextStyles.rubik20black54Aw600,
+        ),
+        SizedBox(height: 10),
+        SizedBox(height: 10),
+        Container(
+          height: 200,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 255, 93, 93),
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 2,
+                top: 20,
+                child: Icon(
+                  Icons.assessment,
+                  color: Colors.white,
+                  size: 140,
+                ),
+                // Image.asset(
+                //   'assets/assesment/assesment_dashboard.png',
+                //   height: 140,
+                // ),
+              ),
+              Positioned(
+                right: 5,
+                top: 30,
+                child: SizedBox(
+                  width: 185,
+                  child: Column(
+                    children: [
+                      Wrap(
+                        children: [
+                          Text(
+                            "Create Assesment From now with pupiltube",
+                            style: TextStyles.rubik14whiteFFw600,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                          onPressed: () {
+                            AppRouteService.navigateToassesmentIntro(
+                              context,
+                            );
+                          },
+                          child: Text("Create Assesment")),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         const SizedBox(height: 40),
+        Text(
+          "My Assesments",
+          style: TextStyles.rubik20black54Aw600,
+        ),
+        SizedBox(height: 10),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           controller: _scrollController,

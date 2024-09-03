@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:puppil/UI/Screens/student/assesment/assesment_screen.dart';
-import 'package:puppil/UI/Screens/student/events/events_screen.dart';
+import 'package:puppil/UI/Screens/student/modules/assesment/assesment_screen.dart';
+import 'package:puppil/UI/Screens/student/modules/events/events_screen.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/student/home/home_screen.dart';
-import 'package:puppil/UI/Screens/student/profile/profile_screen.dart';
-import 'package:puppil/UI/Screens/teacher/profile/profile_screen.dart';
+import 'package:puppil/UI/Screens/student/modules/home/home_screen.dart';
+import 'package:puppil/UI/Screens/student/modules/profile/profile_screen.dart';
+import 'package:puppil/UI/Screens/teacher/modules/profile/profile_screen.dart';
 import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
-import 'package:puppil/UI/Screens/student/assesment/section/test_screen.dart';
+import 'package:puppil/UI/Screens/student/modules/assesment/section/test_screen.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({super.key});

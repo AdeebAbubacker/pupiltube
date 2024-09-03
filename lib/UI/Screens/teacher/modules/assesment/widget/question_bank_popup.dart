@@ -3,57 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:puppil/core/models/question_bank/question_bank_model.dart';
+import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/view_model/assesment/assesment_bloc.dart';
 import 'package:puppil/core/view_model/question_bank/question_bank_bloc.dart';
 
-class QuestionBankPopup extends StatefulWidget {
-  const QuestionBankPopup({super.key});
-
-  @override
-  State<QuestionBankPopup> createState() => _QuestionBankPopupState();
-}
-
-class _QuestionBankPopupState extends State<QuestionBankPopup> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return Dialog(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.all(16),
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 500,
-                    child: PopupContent(),
-                  ),
-                );
-              },
-            );
-          },
-          child: Text("Open Popup"),
-        ),
-      ),
-    );
-  }
-}
-
 class PopupContent extends StatefulWidget {
-  const PopupContent({super.key});
+  final ModelToAssesmentCreation modelToAssesmentCreation;
+  const PopupContent({super.key, required this.modelToAssesmentCreation});
 
   @override
   _PopupContentState createState() => _PopupContentState();
@@ -298,7 +254,7 @@ class _PopupContentState extends State<PopupContent> {
                       BlocProvider.of<AssesmentBloc>(context).add(
                           AssesmentEvent.importQuestionBank(
                               assesmentId:
-                                  '2862d12e-2da2-4d38-9420-793caf61b627',
+                                  '${widget.modelToAssesmentCreation.assementId}',
                               question: selectedQuestions ?? []));
                     },
                     child: Text("Import ALL"),

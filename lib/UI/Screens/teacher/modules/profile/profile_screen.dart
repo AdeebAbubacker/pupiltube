@@ -10,8 +10,6 @@ import 'package:puppil/core/routes/app_route.dart';
 import 'package:puppil/core/service/auth/auth_service.dart';
 import 'package:puppil/core/view_model/login/login_bloc.dart';
 
-
-
 class TeacherProfileScreen extends StatefulWidget {
   const TeacherProfileScreen({super.key});
 
@@ -141,29 +139,33 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
       },
       child: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: _selectedImage != null
-                        ? FileImage(_selectedImage!)
-                        : null,
-                    child: _selectedImage == null
-                        ? Icon(Icons.person, size: 40)
-                        : null,
-                  ),
-                  Positioned(
-                    left: 55,
-                    top: 50,
-                    child: IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () => _openFilePicker(context),
+              child: SizedBox(
+                width: 94,
+                height: 94,
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: _selectedImage != null
+                          ? FileImage(_selectedImage!)
+                          : null,
+                      child: _selectedImage == null
+                          ? Icon(Icons.person, size: 40)
+                          : null,
                     ),
-                  ),
-                ],
+                    Positioned(
+                      left: 55,
+                      top: 50,
+                      child: IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () => _openFilePicker(context),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 30),
@@ -175,39 +177,6 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
               controller: nameController,
             ),
             const SizedBox(height: 10),
-            // DropdownButtonFormField<String>(
-            //   value: selectedString,
-            //   decoration: const InputDecoration(
-            //     enabledBorder: UnderlineInputBorder(
-            //       borderSide: BorderSide(color: Colors.grey),
-            //     ),
-            //     focusedBorder: UnderlineInputBorder(
-            //       borderSide: BorderSide(color: Colors.grey),
-            //     ),
-            //   ),
-            //   hint: Text(
-            //     'Choose an option',
-            //     style: TextStyles.rubik12black54Aw400,
-            //   ),
-            //   items: options.map((String value) {
-            //     return DropdownMenuItem<String>(
-            //       value: value,
-            //       child: Text(
-            //         value == "d0087d35-9bdc-4d3b-af95-de9b1b910c41"
-            //             ? "Class 4"
-            //             : "Class 5",
-            //         overflow: TextOverflow.ellipsis,
-            //         maxLines: 1,
-            //       ),
-            //     );
-            //   }).toList(),
-            //   onChanged: (newValue) {
-            //     setState(() {
-            //       selectedString = newValue;
-            //     });
-            //   },
-            // ),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(2),
@@ -261,7 +230,6 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                 ),
               ),
             ),
-
             Center(
               child: ElevatedButton(
                 onPressed: () {

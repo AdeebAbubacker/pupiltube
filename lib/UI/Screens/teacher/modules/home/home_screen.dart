@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:puppil/UI/Screens/teacher/home/widget/video_player.dart';
+import 'package:puppil/UI/Screens/teacher/modules/home/widget/video_player.dart';
 import 'package:puppil/UI/Widget/homeappbar.dart';
 import 'package:puppil/core/constant/text_style.dart';
 import 'package:puppil/core/routes/app_route.dart';
@@ -26,6 +26,45 @@ class HomeScreen extends StatelessWidget {
       children: [
         HomeAppBar(),
         SizedBox(height: 50),
+        Container(
+          height: 160,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 255, 93, 93),
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 2,
+                top: 20,
+                child: Image.asset(
+                  'assets/icon/welcome.png',
+                  height: 110,
+                ),
+              ),
+              Positioned(
+                right: 5,
+                top: 30,
+                child: SizedBox(
+                  width: 195,
+                  child: Column(
+                    children: [
+                      Wrap(
+                        children: [
+                          Text(
+                            "Welcome to pupil world, start creating assements and question banks",
+                            style: TextStyles.rubik14whiteFFw600,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 30),
         Text(
           "My Courses",
           style: TextStyles.rubik16grey367,
