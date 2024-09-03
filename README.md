@@ -9,7 +9,7 @@ A new Flutter project.
 <div align="center">
   <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/icon/pupil.png" alt="SchoolConnect Logo" width="200"/>
   <p>An intuitive app designed to enhance communication between students and teachers, streamlining education through technology.</p>
-  <a href="https://github.com/yourusername/schoolconnect"><img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/animated/Data%20Error.gif" alt="GitHub Stars"></a>
+  <a href="https://github.com/yourusername/schoolconnect"><img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/readme/screen%201.jpg" alt="GitHub Stars"></a>
   <a href="https://github.com/yourusername/schoolconnect/issues"><img src=https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/animated/Data%20Error.gif" alt="Issues"></a>
   <a href="https://github.com/yourusername/schoolconnect/blob/main/LICENSE"><img src="https://img.shields.io/github/license/yourusername/schoolconnect" alt="License"></a>
 </div>
@@ -40,7 +40,6 @@ A new Flutter project.
 | **Firebase**  | Backend services including Authentication.     |
 | **Firestore** | Database for storing student and teacher data. |
 
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -52,8 +51,9 @@ A new Flutter project.
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/AdeebAbubacker/pupiltube
    cd pupiltube
-   
+
    ```
