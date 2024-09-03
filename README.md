@@ -14,6 +14,29 @@ A new Flutter project.
   <a href="https://github.com/yourusername/schoolconnect/blob/main/LICENSE"><img src="https://img.shields.io/github/license/yourusername/schoolconnect" alt="License"></a>
 </div>
 
+## App Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/readme/screen%201.jpg" alt="Screen 1" width="200"/>
+      </td>
+      <td>
+        <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/readme/screen%202.jpg" alt="Screen 2" width="200"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/readme/screen%203.jpg" alt="Screen 3" width="200"/>
+      </td>
+      <td>
+        <img src="https://github.com/AdeebAbubacker/pupiltube/blob/main/assets/readme/screen%204.jpg" alt="Screen 4" width="200"/>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ---
 
 ## 🌟 Features
